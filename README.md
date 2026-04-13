@@ -1,98 +1,124 @@
-# 🎌 Interactive Japanese Kana Learning Chart
+## KanaSpace
 
-A lightweight, responsive web app for learning Japanese Kana (Hiragana & Katakana) through interactive charts, pronunciation tips, AI-generated examples, and handwriting practice.
+KanaSpace is a modern, interactive web application designed to help users learn and practice Japanese kana with clarity and precision.
 
-## ✨ Features
+It combines an elegant interface with practical learning tools, transforming traditional kana charts into a structured, engaging experience.
 
-- **Clickable Kana Chart** (Hiragana & Katakana)
-- **Dakuten & Handakuten Toggle**
-- **Romaji Display** for all characters
-- **Speech Synthesis** using your browser’s Japanese voice
-- **AI Features (Gemini):**
-  - Generate pronunciation tips for each character
-  - Show example words and sentences
-  - Provide etymology/history of selected Kana
-  - Offer general pronunciation advice
-- **Handwriting Practice Canvas**
-  - Draw Kana with mouse/touch
-  - See reference shadow
-  - AI-powered handwriting feedback
+---
 
-## 🖥️ Live Demo
+## Overview
 
-> Just open `AiKanaLearning.html` in any modern web browser. No installation or dependencies needed.
+KanaSpace is built for learners who want more than static charts. It introduces interaction, customization, and practice into a single seamless environment.
 
-## 📁 Project Structure
+From exploration to reinforcement, every component is designed to improve recognition, retention, and usability.
 
-- `AiKanaLearning.html` – All-in-one HTML file (HTML, CSS, JS)
-- Built-in Gemini API integration (You must provide your own API key)
+---
 
-## 🔧 Requirements
+## Core Features
 
-- Modern browser (Chrome, Firefox, Edge, etc.)
-- Internet connection (for Gemini AI features)
-- Browser must support `speechSynthesis` API for audio playback
+### Learn Mode
 
-## ⚙️ Setup & Usage
+* Interactive Hiragana and Katakana charts
+* Clean grid layout with romaji references
+* Hover and click interactions for quick learning
 
-1. Clone or download this repo.
-2. Open `AiKanaLearning.html` in a browser.
-3. Click on any character to:
-   - Hear its pronunciation
-   - View its Romaji
-   - Practice writing
-   - Generate AI-powered examples and tips
+### Practice Mode
 
-## 🧠 AI Integration
+* Built-in quiz system for active recall
+* Immediate feedback for correct and incorrect answers
+* Designed to reinforce memory through repetition
 
-This project uses [Google Gemini](https://ai.google) for:
-- Pronunciation advice
-- Word and sentence generation
-- Historical insights
-- Handwriting feedback
+### Dynamic Theme Engine
 
-## 🔑 How to Get a Gemini API Key
+* 30+ carefully crafted themes (dark and light)
+* Multi-color palette system with smooth transitions
+* Visually adaptive interface for long study sessions
 
-To enable AI features, you need your own Gemini API key.
+### Advanced Typography Support
 
-### Steps:
-1. Visit the [Google AI Studio](https://aistudio.google.com/app/apikey).
-2. Sign in with your Google account.
-3. Click **"Create API key"**.
-4. Copy the key provided.
-5. Open `AiKanaLearning.html` in a text/code editor.
-6. Find the line:
-   ```js
-   const API_KEY = "your-key-here";
+* 20+ Japanese fonts included
+* Exposure to different writing styles for real-world reading
 
-> Replace the placeholder `API_KEY` in the script with your own Gemini API key to enable AI features.
+### Smooth User Experience
 
-## ✍️ Handwriting Practice
+* Responsive layout across devices
+* Fluid animations and transitions
+* Minimal, distraction-free interface
 
-- Draw the selected Kana character
-- Get real-time AI feedback on accuracy
-- Works with mouse and touchscreen
+### Zero Setup
 
-## 🗣️ Voice Support
+* No frameworks
+* No dependencies
+* Runs directly in the browser
 
-Speech is generated using your browser’s built-in Japanese voice. Make sure:
-- You're using a browser with Japanese voice support
-- The voice is selected automatically on load
+---
 
-## 📦 Exporting/Embedding
+## Getting Started
 
-You can embed this chart in any educational site by:
-- Copying the `AiKanaLearning.html` content into an iframe
-- Hosting it on your preferred platform
+Clone the repository:
 
-## 📄 License
+```bash
+git clone https://github.com/your-username/KanaSpace.git
+cd KanaSpace
+```
 
-MIT License – Free to use, modify, and share.
+Open the application:
 
-## 🙏 Credits
-1. Md. Najmos Salahin
+* Launch `index.html` in your browser
 
-Created with ❤️ for learners of Japanese. Powered by:
-- HTML5, CSS3, JavaScript
-- Google Gemini AI
-- Web Speech API
+---
+
+## Design Principles
+
+KanaSpace is built on three key ideas:
+
+* Simplicity: No unnecessary complexity or setup
+* Clarity: Clean visuals that prioritize readability
+* Engagement: Interactive elements that support active learning
+
+The goal is to make studying kana feel intuitive rather than repetitive.
+
+---
+
+## Use Cases
+
+* Beginners learning Hiragana and Katakana
+* Intermediate learners reinforcing memory
+* Developers exploring UI design and theming systems
+* Offline study tool for distraction-free learning
+
+---
+
+## Roadmap
+
+* Audio pronunciation support
+* Progress tracking system
+* Expanded quiz modes
+* Mobile-first optimizations
+
+
+## Contributing
+
+Contributions are welcome. Suggestions, improvements, and feature ideas can be submitted via issues or pull requests.
+
+---
+
+## License
+
+MIT License
+
+```
+MIT License
+
+Copyright (c) 2026
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software...
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+```
