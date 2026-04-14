@@ -626,7 +626,7 @@ kbd{
   .dropdown-menu{
     position:fixed;top:50%!important;left:50%!important;
     right:auto!important;bottom:auto!important;
-    width:88vw!important;max-width:320px;max-height:65vh!important;
+    width:92vw!important;max-width:520px;max-height:65vh!important;
     transform:translate(-50%,-40%) scale(0.95)!important;
     border-radius:20px!important;z-index:10000!important;
     box-shadow:0 10px 40px rgba(0,0,0,0.5),0 0 0 2000px rgba(0,0,0,0.35)!important
@@ -640,6 +640,50 @@ kbd{
   }
   .pron-tip.visible{transform:translate(-50%,0) scale(1)!important}
 }
+
+/* ================================================================
+   PILL-GRID THEME & FONT SELECTOR
+================================================================ */
+#themeMenu,#fontMenu{
+  min-width:520px;max-width:600px;
+  max-height:70vh;
+  padding:18px 18px 16px;
+  display:flex;flex-direction:column;gap:0
+}
+.pm-section{margin-bottom:18px}
+.pm-section:last-child{margin-bottom:0}
+.pm-label{
+  display:block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;font-weight:700;
+  letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--muted);opacity:0.7;
+  margin-bottom:10px;padding:0 2px
+}
+.pm-grid{display:flex;flex-wrap:wrap;gap:7px}
+.pm-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 13px;border-radius:20px;
+  border:1.5px solid var(--border);
+  background:color-mix(in srgb,var(--text) 3%,transparent);
+  color:var(--muted);
+  font-size:0.85rem;font-weight:600;
+  font-family:inherit;cursor:pointer;
+  transition:all 0.15s ease;
+  white-space:nowrap;outline:none;line-height:1
+}
+.pm-pill:hover{
+  background:color-mix(in srgb,var(--text) 10%,transparent);
+  color:var(--text);
+  border-color:color-mix(in srgb,var(--text) 25%,transparent)
+}
+.pm-pill.sel{
+  border-color:var(--c1);
+  color:var(--c1);
+  background:color-mix(in srgb,var(--c1) 13%,transparent)
+}
+.pm-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;display:inline-block}
+.pm-prev{font-size:1.05rem;line-height:1;display:inline-block}
 </style>
 </head>
 <body class="theme-night kf-sans">
@@ -835,69 +879,69 @@ const ICON_MOON=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" str
    THEME & FONT CONFIG
 ================================================================ */
 const THEMES=[
-  {id:'night',      name:'Night',           type:'dark'},
-  {id:'catppuccin', name:'Catppuccin',       type:'dark'},
-  {id:'gruvbox',    name:'Gruvbox Dark',     type:'dark'},
-  {id:'tokyo',      name:'Tokyo Night',      type:'dark'},
-  {id:'nord',       name:'Nord',             type:'dark'},
-  {id:'dracula',    name:'Dracula',          type:'dark'},
-  {id:'rosepine',   name:'Rosé Pine',        type:'dark'},
-  {id:'cyberpunk',  name:'Cyberpunk',        type:'dark'},
-  {id:'obsidian',   name:'Obsidian',         type:'dark'},
-  {id:'coral-dark', name:'Coral Dark',       type:'dark'},
-  {id:'forest-dark',name:'Forest Dark',      type:'dark'},
-  {id:'onedark',    name:'One Dark',         type:'dark'},
-  {id:'solarized-dark',name:'Solarized Dark',type:'dark'},
-  {id:'monokai',    name:'Monokai',          type:'dark'},
-  {id:'kanagawa-dark',name:'Kanagawa',       type:'dark'},
-  {id:'everforest-dark',name:'Everforest Dark',type:'dark'},
-  {id:'material-dark',name:'Material Dark',  type:'dark'},
-  {id:'ayu-dark',   name:'Ayu Dark',         type:'dark'},
-  {id:'astral',     name:'Astral',           type:'dark'},
-  {id:'midnight',   name:'Midnight',         type:'dark'},
-  {id:'eclipse',    name:'Eclipse',          type:'dark'},
-  {id:'nebula',     name:'Nebula',           type:'dark'},
-  {id:'paper',      name:'Paper',            type:'light'},
-  {id:'sepia',      name:'Sepia',            type:'light'},
-  {id:'minimal-light',name:'Minimal Light',  type:'light'},
-  {id:'catppuccin-latte',name:'Catppuccin Latte',type:'light'},
-  {id:'gruvbox-light',name:'Gruvbox Light',  type:'light'},
-  {id:'tokyo-day',  name:'Tokyo Day',        type:'light'},
-  {id:'nord-light', name:'Nord Light',       type:'light'},
-  {id:'rosepine-dawn',name:'Rosé Pine Dawn', type:'light'},
-  {id:'solarized-light',name:'Solarized Light',type:'light'},
-  {id:'kanagawa-lotus',name:'Kanagawa Lotus',type:'light'},
-  {id:'everforest-light',name:'Everforest Light',type:'light'},
-  {id:'material-light',name:'Material Light',type:'light'},
-  {id:'ayu-light',  name:'Ayu Light',        type:'light'},
-  {id:'sakura',     name:'Sakura',           type:'light'},
-  {id:'matcha',     name:'Matcha',           type:'light'},
-  {id:'sky-light',  name:'Sky',              type:'light'},
-  {id:'lavender-light',name:'Lavender',      type:'light'},
-  {id:'coral-light',name:'Coral Light',      type:'light'}
+  {id:'night',           name:'Night',           type:'dark',  dot:'#58a6ff'},
+  {id:'catppuccin',      name:'Catppuccin',       type:'dark',  dot:'#cba6f7'},
+  {id:'gruvbox',         name:'Gruvbox',          type:'dark',  dot:'#fabd2f'},
+  {id:'tokyo',           name:'Tokyo Night',      type:'dark',  dot:'#7aa2f7'},
+  {id:'nord',            name:'Nord',             type:'dark',  dot:'#88c0d0'},
+  {id:'dracula',         name:'Dracula',          type:'dark',  dot:'#bd93f9'},
+  {id:'rosepine',        name:'Rose Pine',        type:'dark',  dot:'#c4a7e7'},
+  {id:'cyberpunk',       name:'Cyberpunk',        type:'dark',  dot:'#00e5ff'},
+  {id:'obsidian',        name:'Obsidian',         type:'dark',  dot:'#8ab4f8'},
+  {id:'coral-dark',      name:'Coral',            type:'dark',  dot:'#ff7f50'},
+  {id:'forest-dark',     name:'Forest',           type:'dark',  dot:'#6bbf8a'},
+  {id:'onedark',         name:'One Dark',         type:'dark',  dot:'#61afef'},
+  {id:'solarized-dark',  name:'Solarized',        type:'dark',  dot:'#b58900'},
+  {id:'monokai',         name:'Monokai',          type:'dark',  dot:'#a6e22e'},
+  {id:'kanagawa-dark',   name:'Kanagawa',         type:'dark',  dot:'#7e9cd8'},
+  {id:'everforest-dark', name:'Everforest',       type:'dark',  dot:'#a7c080'},
+  {id:'material-dark',   name:'Material',         type:'dark',  dot:'#80cbc4'},
+  {id:'ayu-dark',        name:'Ayu',              type:'dark',  dot:'#ffcc66'},
+  {id:'astral',          name:'Astral',           type:'dark',  dot:'#7df9ff'},
+  {id:'midnight',        name:'Midnight',         type:'dark',  dot:'#38bdf8'},
+  {id:'eclipse',         name:'Eclipse',          type:'dark',  dot:'#9cdcfe'},
+  {id:'nebula',          name:'Nebula',           type:'dark',  dot:'#00d4ff'},
+  {id:'paper',           name:'Paper',            type:'light', dot:'#d94a38'},
+  {id:'sepia',           name:'Sepia',            type:'light', dot:'#b58900'},
+  {id:'minimal-light',   name:'Minimal',          type:'light', dot:'#3b82f6'},
+  {id:'catppuccin-latte',name:'Ctp Latte',        type:'light', dot:'#1e66f5'},
+  {id:'gruvbox-light',   name:'Gruvbox Lt',       type:'light', dot:'#b57614'},
+  {id:'tokyo-day',       name:'Tokyo Day',        type:'light', dot:'#2e7de9'},
+  {id:'nord-light',      name:'Nord Light',       type:'light', dot:'#5e81ac'},
+  {id:'rosepine-dawn',   name:'Rose Dawn',        type:'light', dot:'#907aaa'},
+  {id:'solarized-light', name:'Solarized Lt',     type:'light', dot:'#268bd2'},
+  {id:'kanagawa-lotus',  name:'Kng Lotus',        type:'light', dot:'#43436c'},
+  {id:'everforest-light',name:'Everforest Lt',    type:'light', dot:'#5c8b65'},
+  {id:'material-light',  name:'Material Lt',      type:'light', dot:'#009688'},
+  {id:'ayu-light',       name:'Ayu Light',        type:'light', dot:'#f2ae49'},
+  {id:'sakura',          name:'Sakura',           type:'light', dot:'#ff69b4'},
+  {id:'matcha',          name:'Matcha',           type:'light', dot:'#5c8b65'},
+  {id:'sky-light',       name:'Sky',              type:'light', dot:'#0080ff'},
+  {id:'lavender-light',  name:'Lavender',         type:'light', dot:'#8a2be2'},
+  {id:'coral-light',     name:'Coral Light',      type:'light', dot:'#ff7f50'}
 ];
 
 const FONTS=[
-  {id:'kf-sans',      label:'Noto Sans',      prev:'あ', family:"'Noto Sans JP',sans-serif"},
-  {id:'kf-serif',     label:'Noto Serif',     prev:'あ', family:"'Noto Serif JP',serif"},
-  {id:'kf-rounded',   label:'M+ Rounded',     prev:'あ', family:"'M PLUS Rounded 1c',sans-serif"},
-  {id:'kf-zen-sans',  label:'Zen Kaku',       prev:'あ', family:"'Zen Kaku Gothic New',sans-serif"},
-  {id:'kf-shippori',  label:'Shippori Mincho',prev:'あ', family:"'Shippori Mincho',serif"},
-  {id:'kf-biz-sans',  label:'BIZ UDGothic',   prev:'あ', family:"'BIZ UDGothic',sans-serif"},
-  {id:'kf-biz-serif', label:'BIZ UDMincho',   prev:'あ', family:"'BIZ UDMincho',serif"},
-  {id:'kf-klee',      label:'Klee One',       prev:'あ', family:"'Klee One',cursive"},
-  {id:'kf-zen-old',   label:'Zen Old Mincho', prev:'あ', family:"'Zen Old Mincho',serif"},
-  {id:'kf-kaisei',    label:'Kaisei Decol',   prev:'あ', family:"'Kaisei Decol',serif"},
-  {id:'kf-yusei',     label:'Yusei Magic',    prev:'あ', family:"'Yusei Magic',sans-serif"},
-  {id:'kf-hachimaru', label:'Hachi Maru Pop', prev:'あ', family:"'Hachi Maru Pop',cursive"},
-  {id:'kf-potta',     label:'Potta One',      prev:'あ', family:"'Potta One',sans-serif"},
-  {id:'kf-rocknroll', label:'RocknRoll',      prev:'あ', family:"'RocknRoll One',sans-serif"},
-  {id:'kf-train',     label:'Train One',      prev:'あ', family:"'Train One',sans-serif"},
-  {id:'kf-dela',      label:'Dela Gothic',    prev:'あ', family:"'Dela Gothic One',sans-serif"},
-  {id:'kf-rampart',   label:'Rampart One',    prev:'あ', family:"'Rampart One',sans-serif"},
-  {id:'kf-reggae',    label:'Reggae One',     prev:'あ', family:"'Reggae One',sans-serif"},
-  {id:'kf-stick',     label:'Stick',          prev:'あ', family:"'Stick',sans-serif"},
-  {id:'kf-dotgothic', label:'DotGothic 8-bit',prev:'あ', family:"'DotGothic16',monospace"}
+  {id:'kf-sans',      label:'Noto Sans',      short:'Sans',    prev:'あ', family:"'Noto Sans JP',sans-serif"},
+  {id:'kf-serif',     label:'Noto Serif',     short:'Serif',   prev:'あ', family:"'Noto Serif JP',serif"},
+  {id:'kf-rounded',   label:'M+ Rounded',     short:'Round',   prev:'あ', family:"'M PLUS Rounded 1c',sans-serif"},
+  {id:'kf-zen-sans',  label:'Zen Kaku',       short:'Zen',     prev:'あ', family:"'Zen Kaku Gothic New',sans-serif"},
+  {id:'kf-shippori',  label:'Shippori Mincho',short:'Shippori',prev:'あ', family:"'Shippori Mincho',serif"},
+  {id:'kf-biz-sans',  label:'BIZ UDGothic',   short:'BIZ S',   prev:'あ', family:"'BIZ UDGothic',sans-serif"},
+  {id:'kf-biz-serif', label:'BIZ UDMincho',   short:'BIZ M',   prev:'あ', family:"'BIZ UDMincho',serif"},
+  {id:'kf-klee',      label:'Klee One',       short:'Klee',    prev:'あ', family:"'Klee One',cursive"},
+  {id:'kf-zen-old',   label:'Zen Old Mincho', short:'Zen Old', prev:'あ', family:"'Zen Old Mincho',serif"},
+  {id:'kf-kaisei',    label:'Kaisei Decol',   short:'Kaisei',  prev:'あ', family:"'Kaisei Decol',serif"},
+  {id:'kf-yusei',     label:'Yusei Magic',    short:'Yusei',   prev:'あ', family:"'Yusei Magic',sans-serif"},
+  {id:'kf-hachimaru', label:'Hachi Maru Pop', short:'Hachi',   prev:'あ', family:"'Hachi Maru Pop',cursive"},
+  {id:'kf-potta',     label:'Potta One',      short:'Potta',   prev:'あ', family:"'Potta One',sans-serif"},
+  {id:'kf-rocknroll', label:'RocknRoll',      short:'Rock',    prev:'あ', family:"'RocknRoll One',sans-serif"},
+  {id:'kf-train',     label:'Train One',      short:'Train',   prev:'あ', family:"'Train One',sans-serif"},
+  {id:'kf-dela',      label:'Dela Gothic',    short:'Dela',    prev:'あ', family:"'Dela Gothic One',sans-serif"},
+  {id:'kf-rampart',   label:'Rampart One',    short:'Rampart', prev:'あ', family:"'Rampart One',sans-serif"},
+  {id:'kf-reggae',    label:'Reggae One',     short:'Reggae',  prev:'あ', family:"'Reggae One',sans-serif"},
+  {id:'kf-stick',     label:'Stick',          short:'Stick',   prev:'あ', family:"'Stick',sans-serif"},
+  {id:'kf-dotgothic', label:'DotGothic 8-bit',short:'8-bit',   prev:'あ', family:"'DotGothic16',monospace"}
 ];
 
 /* ── State ── */
@@ -913,48 +957,50 @@ function applyThemeFont(){
   const t = THEMES.find(x=>x.id===curTheme);
   document.getElementById('themeLabel').textContent = t.name;
   document.getElementById('themeIcon').innerHTML = t.type==='light' ? ICON_SUN : ICON_MOON;
-  document.querySelectorAll('#themeMenu .d-opt').forEach(o=>o.classList.toggle('sel',o.dataset.v===curTheme));
-  document.querySelectorAll('#fontMenu .d-opt').forEach(o=>o.classList.toggle('sel',o.dataset.v===curFont));
+  document.querySelectorAll('#themeMenu .pm-pill').forEach(o=>o.classList.toggle('sel',o.dataset.v===curTheme));
+  document.querySelectorAll('#fontMenu .pm-pill').forEach(o=>o.classList.toggle('sel',o.dataset.v===curFont));
   const fo = FONTS.find(x=>x.id===curFont);
   document.getElementById('fontLabel').textContent = fo.label;
 }
 
-/* ── Build Theme Menu ── */
+/* ── Build Theme Menu (pill-grid) ── */
 const themeMenu = document.getElementById('themeMenu');
-let lastType = null;
-THEMES.forEach(t=>{
-  if(lastType && lastType!==t.type){
-    const sep=document.createElement('div');
-    sep.className='d-sep';sep.textContent=t.type==='light'?'Light Themes':'Dark Themes';
-    themeMenu.appendChild(sep);
-  }
-  if(!lastType){
-    const sep=document.createElement('div');sep.className='d-sep';sep.textContent='Dark Themes';
-    themeMenu.appendChild(sep);
-  }
-  lastType=t.type;
-  const o=document.createElement('div');
-  o.className='d-opt'+(t.id===curTheme?' sel':'');
-  o.dataset.v=t.id;o.tabIndex=0;o.role='option';
-  o.innerHTML=`<div class="opt-l"><span class="theme-swatch" style="background:currentColor;opacity:0.7"></span><span>${t.name}</span></div>`;
-  o.onclick=()=>{curTheme=t.id;applyThemeFont();closeDropdowns()};
-  o.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();o.click()}};
-  themeMenu.appendChild(o);
+['dark','light'].forEach(type=>{
+  const sec=document.createElement('div');sec.className='pm-section';
+  const lbl=document.createElement('span');lbl.className='pm-label';
+  lbl.textContent=type==='dark'?'Theme — Dark':'Theme — Light';
+  sec.appendChild(lbl);
+  const grid=document.createElement('div');grid.className='pm-grid';
+  THEMES.filter(t=>t.type===type).forEach(t=>{
+    const pill=document.createElement('button');
+    pill.className='pm-pill'+(t.id===curTheme?' sel':'');
+    pill.dataset.v=t.id;pill.tabIndex=0;
+    pill.innerHTML=`<span class="pm-dot" style="background:${t.dot}"></span>${t.name}`;
+    pill.onclick=()=>{curTheme=t.id;applyThemeFont();closeDropdowns()};
+    pill.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pill.click()}};
+    grid.appendChild(pill);
+  });
+  sec.appendChild(grid);
+  themeMenu.appendChild(sec);
 });
 
-/* ── Build Font Menu ── */
+/* ── Build Font Menu (pill-grid) ── */
 const fontMenu = document.getElementById('fontMenu');
-const fSep=document.createElement('div');fSep.className='d-sep';fSep.textContent='Kana Font (20)';
-fontMenu.appendChild(fSep);
+const fSecWrap=document.createElement('div');fSecWrap.className='pm-section';
+const fLbl=document.createElement('span');fLbl.className='pm-label';fLbl.textContent='Kana Font';
+fSecWrap.appendChild(fLbl);
+const fGrid=document.createElement('div');fGrid.className='pm-grid';
 FONTS.forEach(f=>{
-  const o=document.createElement('div');
-  o.className='d-opt'+(f.id===curFont?' sel':'');
-  o.dataset.v=f.id;o.tabIndex=0;o.role='option';
-  o.innerHTML=`<div class="opt-l"><span class="font-prev" style="font-family:${f.family}">${f.prev}</span><span>${f.label}</span></div>`;
-  o.onclick=()=>{curFont=f.id;applyThemeFont();closeDropdowns()};
-  o.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();o.click()}};
-  fontMenu.appendChild(o);
+  const pill=document.createElement('button');
+  pill.className='pm-pill'+(f.id===curFont?' sel':'');
+  pill.dataset.v=f.id;pill.tabIndex=0;
+  pill.innerHTML=`<span class="pm-prev" style="font-family:${f.family}">${f.prev}</span>${f.short}`;
+  pill.onclick=()=>{curFont=f.id;applyThemeFont();closeDropdowns()};
+  pill.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pill.click()}};
+  fGrid.appendChild(pill);
 });
+fSecWrap.appendChild(fGrid);
+fontMenu.appendChild(fSecWrap);
 
 /* ── Dropdown Toggle Logic ── */
 function toggleDropdown(wrap,btn){
@@ -1098,131 +1144,131 @@ const KATA_EXT=[
 const KANA_INFO={
   'a':{d:"Pronounced like the 'a' in 'father'.",h_ex:[{j:'あさ',r:'asa',m:'morning'},{j:'あめ',r:'ame',m:'rain'},{j:'あき',r:'aki',m:'autumn'}],k_ex:[{j:'アイス',r:'aisu',m:'ice cream'},{j:'アジア',r:'ajia',m:'Asia'},{j:'アニメ',r:'anime',m:'anime'}]},
   'i':{d:"Sounds like the 'ee' in 'meet'.",h_ex:[{j:'いぬ',r:'inu',m:'dog'},{j:'いま',r:'ima',m:'now'},{j:'いし',r:'ishi',m:'stone'}],k_ex:[{j:'インク',r:'inku',m:'ink'},{j:'インド',r:'indo',m:'India'},{j:'イラスト',r:'irasuto',m:'illustration'}]},
-  'u':{d:"Pronounced like 'oo' in 'boot', but with unrounded lips.",h_ex:[{j:'うみ',r:'umi',m:'sea'},{j:'うた',r:'uta',m:'song'},{j:'うし',r:'ushi',m:'cow'}],k_ex:[{j:'ウイルス',r:'uirusu',m:'virus'},{j:'ウール',r:'uuru',m:'wool'}]},
-  'e':{d:"Sounds like the 'e' in 'pet'.",h_ex:[{j:'えき',r:'eki',m:'station'},{j:'えいが',r:'eiga',m:'movie'},{j:'えだ',r:'eda',m:'branch'}],k_ex:[{j:'エンジン',r:'enjin',m:'engine'},{j:'エプロン',r:'epuron',m:'apron'}]},
-  'o':{d:"Pronounced like the 'o' in 'old'.",h_ex:[{j:'おと',r:'oto',m:'sound'},{j:'おにぎり',r:'onigiri',m:'rice ball'},{j:'おかね',r:'okane',m:'money'}],k_ex:[{j:'オレンジ',r:'orenji',m:'orange'},{j:'オイル',r:'oiru',m:'oil'}]},
-  'ka':{d:"Sounds like 'k' + the 'a' in 'father'.",h_ex:[{j:'かさ',r:'kasa',m:'umbrella'},{j:'かお',r:'kao',m:'face'},{j:'かぎ',r:'kagi',m:'key'}],k_ex:[{j:'カメラ',r:'kamera',m:'camera'},{j:'カレー',r:'karee',m:'curry'}]},
+  'u':{d:"Pronounced like 'oo' in 'boot', but with unrounded lips.",h_ex:[{j:'うみ',r:'umi',m:'sea'},{j:'うた',r:'uta',m:'song'},{j:'うし',r:'ushi',m:'cow'}],k_ex:[{j:'ウイルス',r:'uirusu',m:'virus'},{j:'ウール',r:'uuru',m:'wool'},{j:'ウエスト',r:'uesuto',m:'waist'}]},
+  'e':{d:"Sounds like the 'e' in 'pet'.",h_ex:[{j:'えき',r:'eki',m:'station'},{j:'えいが',r:'eiga',m:'movie'},{j:'えだ',r:'eda',m:'branch'}],k_ex:[{j:'エンジン',r:'enjin',m:'engine'},{j:'エプロン',r:'epuron',m:'apron'},{j:'エレベーター',r:'erebeetaa',m:'elevator'}]},
+  'o':{d:"Pronounced like the 'o' in 'old'.",h_ex:[{j:'おと',r:'oto',m:'sound'},{j:'おにぎり',r:'onigiri',m:'rice ball'},{j:'おかね',r:'okane',m:'money'}],k_ex:[{j:'オレンジ',r:'orenji',m:'orange'},{j:'オイル',r:'oiru',m:'oil'},{j:'オーブン',r:'oobun',m:'oven'}]},
+  'ka':{d:"Sounds like 'k' + the 'a' in 'father'.",h_ex:[{j:'かさ',r:'kasa',m:'umbrella'},{j:'かお',r:'kao',m:'face'},{j:'かぎ',r:'kagi',m:'key'}],k_ex:[{j:'カメラ',r:'kamera',m:'camera'},{j:'カレー',r:'karee',m:'curry'},{j:'カップ',r:'kappu',m:'cup'}]},
   'ki':{d:"Sounds exactly like the word 'key'.",h_ex:[{j:'き',r:'ki',m:'tree'},{j:'きのう',r:'kinou',m:'yesterday'},{j:'きっぷ',r:'kippu',m:'ticket'}],k_ex:[{j:'キロ',r:'kiro',m:'kilo'},{j:'キス',r:'kisu',m:'kiss'},{j:'キッチン',r:'kitchin',m:'kitchen'}]},
-  'ku':{d:"Pronounced like 'koo'.",h_ex:[{j:'くつ',r:'kutsu',m:'shoes'},{j:'くま',r:'kuma',m:'bear'},{j:'くるま',r:'kuruma',m:'car'}],k_ex:[{j:'クラス',r:'kurasu',m:'class'},{j:'クイズ',r:'kuizu',m:'quiz'}]},
-  'ke':{d:"Sounds like the letter 'K' or 'ke' in 'kettle'.",h_ex:[{j:'けむり',r:'kemuri',m:'smoke'},{j:'けさ',r:'kesa',m:'this morning'}],k_ex:[{j:'ケーキ',r:'keeki',m:'cake'},{j:'ケース',r:'keesu',m:'case'}]},
-  'ko':{d:"Pronounced like 'co' in 'coin'.",h_ex:[{j:'こえ',r:'koe',m:'voice'},{j:'こころ',r:'kokoro',m:'heart'},{j:'こども',r:'kodomo',m:'child'}],k_ex:[{j:'コーヒー',r:'koohii',m:'coffee'},{j:'コート',r:'kooto',m:'coat'}]},
-  'sa':{d:"Sounds like the 'sa' in 'saw'.",h_ex:[{j:'さかな',r:'sakana',m:'fish'},{j:'さくら',r:'sakura',m:'cherry blossom'}],k_ex:[{j:'サラダ',r:'sarada',m:'salad'},{j:'サッカー',r:'sakkaa',m:'soccer'}]},
-  'shi':{d:"Pronounced like the word 'she'.",h_ex:[{j:'しお',r:'shio',m:'salt'},{j:'しろ',r:'shiro',m:'white/castle'},{j:'しんぶん',r:'shinbun',m:'newspaper'}],k_ex:[{j:'システム',r:'shisutemu',m:'system'},{j:'シンボル',r:'shinboru',m:'symbol'}]},
-  'su':{d:"Sounds like 'su' in 'suit', shorter and unrounded.",h_ex:[{j:'すし',r:'sushi',m:'sushi'},{j:'すいか',r:'suika',m:'watermelon'}],k_ex:[{j:'スープ',r:'suupu',m:'soup'},{j:'スキー',r:'sukii',m:'ski'}]},
-  'se':{d:"Pronounced like the word 'say' without the 'y'.",h_ex:[{j:'せかい',r:'sekai',m:'world'},{j:'せんせい',r:'sensei',m:'teacher'}],k_ex:[{j:'セーター',r:'seetaa',m:'sweater'},{j:'センター',r:'sentaa',m:'center'}]},
-  'so':{d:"Sounds exactly like the word 'so'.",h_ex:[{j:'そら',r:'sora',m:'sky'},{j:'そと',r:'soto',m:'outside'}],k_ex:[{j:'ソース',r:'soosu',m:'sauce'},{j:'ソフト',r:'sofuto',m:'software'}]},
-  'ta':{d:"Pronounced like the 'ta' in 'taco'.",h_ex:[{j:'たこ',r:'tako',m:'octopus'},{j:'たまご',r:'tamago',m:'egg'}],k_ex:[{j:'タクシー',r:'takushii',m:'taxi'},{j:'タオル',r:'taoru',m:'towel'}]},
-  'chi':{d:"Sounds like 'chee' in 'cheese'.",h_ex:[{j:'ちち',r:'chichi',m:'father'},{j:'ちず',r:'chizu',m:'map'}],k_ex:[{j:'チーズ',r:'chiizu',m:'cheese'},{j:'チケット',r:'chiketto',m:'ticket'}]},
-  'tsu':{d:"Pronounced like the end of 'cats' + 'oo'.",h_ex:[{j:'つき',r:'tsuki',m:'moon'},{j:'つくえ',r:'tsukue',m:'desk'}],k_ex:[{j:'ツアー',r:'tsuaa',m:'tour'},{j:'ツナ',r:'tsuna',m:'tuna'}]},
-  'te':{d:"Sounds like 'te' in 'telephone'.",h_ex:[{j:'て',r:'te',m:'hand'},{j:'てがみ',r:'tegami',m:'letter'}],k_ex:[{j:'テニス',r:'tenisu',m:'tennis'},{j:'テスト',r:'tesuto',m:'test'}]},
-  'to':{d:"Pronounced exactly like 'toe'.",h_ex:[{j:'とけい',r:'tokei',m:'clock'},{j:'とり',r:'tori',m:'bird'},{j:'ともだち',r:'tomodachi',m:'friend'}],k_ex:[{j:'トイレ',r:'toire',m:'toilet'},{j:'トマト',r:'tomato',m:'tomato'}]},
-  'na':{d:"Sounds like 'nah'.",h_ex:[{j:'なつ',r:'natsu',m:'summer'},{j:'なまえ',r:'namae',m:'name'}],k_ex:[{j:'ナイフ',r:'naifu',m:'knife'},{j:'ナンバー',r:'nanbaa',m:'number'}]},
-  'ni':{d:"Pronounced exactly like the word 'knee'.",h_ex:[{j:'にく',r:'niku',m:'meat'},{j:'にほん',r:'nihon',m:'Japan'}],k_ex:[{j:'ニュース',r:'nyuusu',m:'news'},{j:'ニット',r:'nitto',m:'knit'}]},
-  'nu':{d:"Sounds like 'noo' in 'noon'.",h_ex:[{j:'いぬ',r:'inu',m:'dog'},{j:'ぬの',r:'nuno',m:'cloth'}],k_ex:[{j:'ヌードル',r:'nuudoru',m:'noodle'},{j:'カヌー',r:'kanuu',m:'canoe'}]},
-  'ne':{d:"Pronounced like 'nay' without the 'y'.",h_ex:[{j:'ねこ',r:'neko',m:'cat'},{j:'ねずみ',r:'nezumi',m:'mouse'}],k_ex:[{j:'ネクタイ',r:'nekutai',m:'necktie'},{j:'ネット',r:'netto',m:'net'}]},
-  'no':{d:"Sounds exactly like the English word 'no'.",h_ex:[{j:'のみもの',r:'nomimono',m:'beverage'},{j:'のど',r:'nodo',m:'throat'}],k_ex:[{j:'ノート',r:'nooto',m:'notebook'},{j:'ノック',r:'nokku',m:'knock'}]},
-  'ha':{d:"Pronounced like 'ha' when laughing.",h_ex:[{j:'はな',r:'hana',m:'flower'},{j:'はこ',r:'hako',m:'box'}],k_ex:[{j:'ハンバーガー',r:'hanbaagaa',m:'hamburger'},{j:'ハム',r:'hamu',m:'ham'}]},
-  'hi':{d:"Sounds exactly like the word 'he'.",h_ex:[{j:'ひ',r:'hi',m:'fire'},{j:'ひこうき',r:'hikouki',m:'airplane'}],k_ex:[{j:'ヒーター',r:'hiitaa',m:'heater'},{j:'ヒント',r:'hinto',m:'hint'}]},
-  'fu':{d:"A soft blow of air, halfway between 'f' and 'h' + 'oo'.",h_ex:[{j:'ふね',r:'fune',m:'ship'},{j:'ふゆ',r:'fuyu',m:'winter'}],k_ex:[{j:'フォーク',r:'fooku',m:'fork'},{j:'フランス',r:'furansu',m:'France'}]},
-  'he':{d:"Pronounced like 'hay', cut short.",h_ex:[{j:'へや',r:'heya',m:'room'},{j:'へび',r:'hebi',m:'snake'}],k_ex:[{j:'ヘリコプター',r:'herikoputaa',m:'helicopter'},{j:'ヘルメット',r:'herumetto',m:'helmet'}]},
-  'ho':{d:"Sounds like 'ho' in 'hope'.",h_ex:[{j:'ほん',r:'hon',m:'book'},{j:'ほし',r:'hoshi',m:'star'}],k_ex:[{j:'ホテル',r:'hoteru',m:'hotel'},{j:'ホース',r:'hoosu',m:'hose'}]},
-  'ma':{d:"Pronounced like 'ma' as in mother.",h_ex:[{j:'まち',r:'machi',m:'town'},{j:'まど',r:'mado',m:'window'}],k_ex:[{j:'マウス',r:'mausu',m:'mouse'},{j:'マスク',r:'masuku',m:'mask'}]},
-  'mi':{d:"Sounds exactly like the word 'me'.",h_ex:[{j:'みず',r:'mizu',m:'water'},{j:'みみ',r:'mimi',m:'ear'}],k_ex:[{j:'ミルク',r:'miruku',m:'milk'},{j:'ミニ',r:'mini',m:'mini'}]},
-  'mu':{d:"Pronounced like 'moo', the sound a cow makes.",h_ex:[{j:'むし',r:'mushi',m:'bug'},{j:'むら',r:'mura',m:'village'}],k_ex:[{j:'ムード',r:'muudo',m:'mood'}]},
-  'me':{d:"Sounds like 'me' in 'metal'.",h_ex:[{j:'め',r:'me',m:'eye'},{j:'めがね',r:'megane',m:'glasses'}],k_ex:[{j:'メロン',r:'meron',m:'melon'},{j:'メモ',r:'memo',m:'memo'}]},
-  'mo':{d:"Pronounced like 'mo' in 'more'.",h_ex:[{j:'もも',r:'momo',m:'peach'},{j:'もり',r:'mori',m:'forest'}],k_ex:[{j:'モーター',r:'mootaa',m:'motor'},{j:'モデル',r:'moderu',m:'model'}]},
-  'ya':{d:"Sounds like 'yah'.",h_ex:[{j:'やま',r:'yama',m:'mountain'},{j:'やさい',r:'yasai',m:'vegetable'}],k_ex:[{j:'ヤンキー',r:'yankii',m:'Yankee'},{j:'タイヤ',r:'taiya',m:'tire'}]},
-  'yu':{d:"Pronounced exactly like the English word 'you'.",h_ex:[{j:'ゆき',r:'yuki',m:'snow'},{j:'ゆめ',r:'yume',m:'dream'}],k_ex:[{j:'ユーザー',r:'yuuzaa',m:'user'},{j:'ユーモア',r:'yuumoa',m:'humor'}]},
-  'yo':{d:"Sounds like the greeting 'yo!'.",h_ex:[{j:'よる',r:'yoru',m:'night'},{j:'よむ',r:'yomu',m:'to read'}],k_ex:[{j:'ヨーロッパ',r:'yooroppa',m:'Europe'},{j:'ヨット',r:'yotto',m:'yacht'}]},
-  'ra':{d:"A light tap of the tongue, between 'r', 'l', and 'd' + 'ah'.",h_ex:[{j:'らいしゅう',r:'raishuu',m:'next week'}],k_ex:[{j:'ラジオ',r:'rajio',m:'radio'},{j:'ラーメン',r:'raamen',m:'ramen'}]},
-  'ri':{d:"A light tap, sounding like 'ree' in 'reed'.",h_ex:[{j:'りんご',r:'ringo',m:'apple'},{j:'りょこう',r:'ryokou',m:'travel'}],k_ex:[{j:'リボン',r:'ribon',m:'ribbon'},{j:'リング',r:'ringu',m:'ring'}]},
-  'ru':{d:"A light tap, sounding like 'roo' in 'root'.",h_ex:[{j:'さる',r:'saru',m:'monkey'},{j:'はる',r:'haru',m:'spring'}],k_ex:[{j:'ルール',r:'ruuru',m:'rule'},{j:'ルビー',r:'rubii',m:'ruby'}]},
-  're':{d:"A light tap, sounding like 're' in 'red'.",h_ex:[{j:'れきし',r:'rekishi',m:'history'}],k_ex:[{j:'レストラン',r:'resutoran',m:'restaurant'},{j:'レモン',r:'remon',m:'lemon'}]},
-  'ro':{d:"A light tap, sounding like 'row' as in rowing.",h_ex:[{j:'ろく',r:'roku',m:'six'},{j:'ろうそく',r:'rousoku',m:'candle'}],k_ex:[{j:'ロボット',r:'robotto',m:'robot'},{j:'ロケット',r:'roketto',m:'rocket'}]},
-  'wa':{d:"Pronounced like 'wa' in 'water'.",h_ex:[{j:'わたし',r:'watashi',m:'I/me'},{j:'わに',r:'wani',m:'crocodile'}],k_ex:[{j:'ワイン',r:'wain',m:'wine'},{j:'ワット',r:'watto',m:'watt'}]},
-  'wo':{d:"Pronounced like 'oh', used strictly as a grammatical particle.",h_ex:[{j:'ほんを',r:'hon wo',m:'book (obj)'}],k_ex:[{j:'ヲタク',r:'wotaku',m:'otaku (stylized)'}]},
-  'n':{d:"A nasal consonant, sounding like 'n' or 'm' at end of syllable.",h_ex:[{j:'ほん',r:'hon',m:'book'},{j:'てんき',r:'tenki',m:'weather'}],k_ex:[{j:'パン',r:'pan',m:'bread'},{j:'ペン',r:'pen',m:'pen'}]},
-  'ga':{d:"Sounds like 'ga' in 'gargle'.",h_ex:[{j:'がっこう',r:'gakkou',m:'school'},{j:'がくせい',r:'gakusei',m:'student'}],k_ex:[{j:'ガラス',r:'garasu',m:'glass'},{j:'ガソリン',r:'gasorin',m:'gasoline'}]},
-  'gi':{d:"Pronounced like 'gee' in 'geese'.",h_ex:[{j:'ぎんこう',r:'ginkou',m:'bank'}],k_ex:[{j:'ギター',r:'gitaa',m:'guitar'},{j:'ギャグ',r:'gyagu',m:'joke'}]},
-  'gu':{d:"Sounds like 'goo' in 'goose'.",h_ex:[{j:'ぐるぐる',r:'guruguru',m:'spinning'}],k_ex:[{j:'グラス',r:'gurasu',m:'glass/cup'},{j:'グループ',r:'guruupu',m:'group'}]},
-  'ge':{d:"Pronounced like 'ge' in 'get'.",h_ex:[{j:'げんき',r:'genki',m:'healthy'},{j:'げつようび',r:'getsuyoubi',m:'Monday'}],k_ex:[{j:'ゲーム',r:'geemu',m:'game'},{j:'ゲスト',r:'gesuto',m:'guest'}]},
-  'go':{d:"Sounds exactly like the word 'go'.",h_ex:[{j:'ごはん',r:'gohan',m:'meal/rice'},{j:'ごみ',r:'gomi',m:'trash'}],k_ex:[{j:'ゴルフ',r:'gorufu',m:'golf'},{j:'ゴム',r:'gomu',m:'rubber'}]},
-  'za':{d:"Pronounced like 'za' in 'bizarre'.",h_ex:[{j:'ざっし',r:'zasshi',m:'magazine'}],k_ex:[{j:'デザイン',r:'dezain',m:'design'},{j:'ピザ',r:'piza',m:'pizza'}]},
-  'ji':{d:"Sounds like 'jee' in 'jeep'.",h_ex:[{j:'じかん',r:'jikan',m:'time'},{j:'じてんしゃ',r:'jitensha',m:'bicycle'}],k_ex:[{j:'ジーンズ',r:'jiinzu',m:'jeans'},{j:'ラジオ',r:'rajio',m:'radio'}]},
-  'zu':{d:"Pronounced like the word 'zoo'.",h_ex:[{j:'みず',r:'mizu',m:'water'},{j:'ずっと',r:'zutto',m:'always'}],k_ex:[{j:'チーズ',r:'chiizu',m:'cheese'},{j:'サイズ',r:'saizu',m:'size'}]},
-  'ze':{d:"Sounds like 'ze' in 'zest'.",h_ex:[{j:'ぜんぶ',r:'zenbu',m:'everything'},{j:'ぜんぜん',r:'zenzen',m:'not at all'}],k_ex:[{j:'ゼリー',r:'zerii',m:'jelly'},{j:'ゼロ',r:'zero',m:'zero'}]},
-  'zo':{d:"Pronounced like 'zo' in 'zone'.",h_ex:[{j:'かぞく',r:'kazoku',m:'family'}],k_ex:[{j:'ゾーン',r:'zoon',m:'zone'}]},
-  'da':{d:"Sounds like 'da' in 'dad'.",h_ex:[{j:'だいがく',r:'daigaku',m:'university'},{j:'だれ',r:'dare',m:'who'}],k_ex:[{j:'ダンス',r:'dansu',m:'dance'},{j:'ダブル',r:'daburu',m:'double'}]},
-  'dji':{d:"An older variant, pronounced like 'jee'.",h_ex:[{j:'はなぢ',r:'hanadji',m:'nosebleed'}],k_ex:[{j:'ヂ',r:'ji',m:'(rare)'}]},
-  'dzu':{d:"An older variant, pronounced like 'zoo'.",h_ex:[{j:'つづく',r:'tsudzuku',m:'to continue'},{j:'みかづき',r:'mikadzuki',m:'crescent moon'}],k_ex:[{j:'ヅ',r:'zu',m:'(rare)'}]},
-  'de':{d:"Pronounced like 'de' in 'desk'.",h_ex:[{j:'でんわ',r:'denwa',m:'telephone'},{j:'でんしゃ',r:'densha',m:'train'}],k_ex:[{j:'デパート',r:'depaato',m:'department store'},{j:'データ',r:'deeta',m:'data'}]},
-  'do':{d:"Sounds like 'doe', a female deer.",h_ex:[{j:'どうぶつ',r:'doubutsu',m:'animal'},{j:'どこ',r:'doko',m:'where'}],k_ex:[{j:'ドア',r:'doa',m:'door'},{j:'ドイツ',r:'doitsu',m:'Germany'}]},
-  'ba':{d:"Pronounced like the sound sheep make: 'baa'.",h_ex:[{j:'ばしょ',r:'basho',m:'place'},{j:'かばん',r:'kaban',m:'bag'}],k_ex:[{j:'バス',r:'basu',m:'bus'},{j:'バナナ',r:'banana',m:'banana'}]},
-  'bi':{d:"Sounds exactly like 'bee', the insect.",h_ex:[{j:'びじゅつかん',r:'bijutsukan',m:'art museum'}],k_ex:[{j:'ビール',r:'biiru',m:'beer'},{j:'ビデオ',r:'bideo',m:'video'}]},
-  'bu':{d:"Pronounced like 'boo'.",h_ex:[{j:'ぶどう',r:'budou',m:'grapes'}],k_ex:[{j:'ブロック',r:'burokku',m:'block'},{j:'テーブル',r:'teeburu',m:'table'}]},
-  'be':{d:"Sounds like 'be' in 'bed'.",h_ex:[{j:'べんきょう',r:'benkyou',m:'study'},{j:'たべる',r:'taberu',m:'to eat'}],k_ex:[{j:'ベッド',r:'beddo',m:'bed'},{j:'ベルト',r:'beruto',m:'belt'}]},
-  'bo':{d:"Pronounced like 'bo' in 'boat'.",h_ex:[{j:'ぼうし',r:'boushi',m:'hat'},{j:'あそぶ',r:'asobu',m:'to play'}],k_ex:[{j:'ボタン',r:'botan',m:'button'},{j:'ボール',r:'booru',m:'ball'}]},
-  'pa':{d:"Sounds like 'pa' as in father.",h_ex:[{j:'しんぱい',r:'shinpai',m:'worry'},{j:'いっぱい',r:'ippai',m:'full'}],k_ex:[{j:'パン',r:'pan',m:'bread'},{j:'パーティー',r:'paatii',m:'party'}]},
-  'pi':{d:"Pronounced like 'pea'.",h_ex:[{j:'えんぴつ',r:'enpitsu',m:'pencil'},{j:'はっぴょう',r:'happyou',m:'presentation'}],k_ex:[{j:'ピンク',r:'pinku',m:'pink'},{j:'ピアノ',r:'piano',m:'piano'}]},
-  'pu':{d:"Sounds like 'poo' in 'pool'.",h_ex:[{j:'きっぷ',r:'kippu',m:'ticket'}],k_ex:[{j:'プール',r:'puuru',m:'pool'},{j:'プラス',r:'purasu',m:'plus'}]},
-  'pe':{d:"Pronounced like 'pe' in 'pet'.",h_ex:[{j:'ぺらぺら',r:'perapera',m:'fluent'}],k_ex:[{j:'ペン',r:'pen',m:'pen'},{j:'ページ',r:'peeji',m:'page'}]},
-  'po':{d:"Sounds like 'po' in 'poke'.",h_ex:[{j:'さんぽ',r:'sanpo',m:'stroll'}],k_ex:[{j:'ポスト',r:'posuto',m:'postbox'},{j:'ポケット',r:'poketto',m:'pocket'}]},
-  'kya':{d:"Sounds like 'k' + 'ya'.",h_ex:[{j:'きゃく',r:'kyaku',m:'guest'}],k_ex:[{j:'キャベツ',r:'kyabetsu',m:'cabbage'},{j:'キャンプ',r:'kyanpu',m:'camp'}]},
-  'kyu':{d:"Sounds like 'cute'.",h_ex:[{j:'きゅうり',r:'kyuuri',m:'cucumber'}],k_ex:[{j:'ドキュメント',r:'dokyumento',m:'document'}]},
-  'kyo':{d:"Sounds like 'Kyoto'.",h_ex:[{j:'きょう',r:'kyou',m:'today'}],k_ex:[{j:'トーキョー',r:'tookyoo',m:'Tokyo'}]},
-  'sha':{d:"Sounds like 'sha' in 'shark'.",h_ex:[{j:'しゃしん',r:'shashin',m:'photograph'}],k_ex:[{j:'シャツ',r:'shatsu',m:'shirt'},{j:'シャワー',r:'shawaa',m:'shower'}]},
-  'shu':{d:"Sounds like 'shu' in 'shoe'.",h_ex:[{j:'しゅみ',r:'shumi',m:'hobby'}],k_ex:[{j:'シューズ',r:'shuuzu',m:'shoes'}]},
-  'sho':{d:"Sounds like 'sho' in 'short'.",h_ex:[{j:'しょくどう',r:'shokudou',m:'dining hall'}],k_ex:[{j:'ショップ',r:'shoppu',m:'shop'}]},
-  'cha':{d:"Sounds like 'cha' in 'charm'.",h_ex:[{j:'おちゃ',r:'ocha',m:'tea'}],k_ex:[{j:'チャンス',r:'chansu',m:'chance'}]},
-  'chu':{d:"Sounds like 'chu' in 'chew'.",h_ex:[{j:'ちゅうごく',r:'chuugoku',m:'China'}],k_ex:[{j:'チューブ',r:'chuubu',m:'tube'}]},
-  'cho':{d:"Sounds like 'cho' in 'chore'.",h_ex:[{j:'ちょっと',r:'chotto',m:'a little'}],k_ex:[{j:'チョコ',r:'choko',m:'chocolate'}]},
-  'nya':{d:"Sounds like 'nya' (meow).",h_ex:[{j:'こんにゃく',r:'konnyaku',m:'konjac'}],k_ex:[{j:'ニャー',r:'nyaa',m:'meow'}]},
-  'nyu':{d:"Sounds like 'new'.",h_ex:[{j:'ぎゅうにゅう',r:'gyuunyuu',m:'milk'}],k_ex:[{j:'ニュース',r:'nyuusu',m:'news'}]},
-  'nyo':{d:"Sounds like 'nyo'.",h_ex:[{j:'にょう',r:'nyou',m:'urine'}],k_ex:[{j:'ニョッキ',r:'nyokki',m:'gnocchi'}]},
-  'hya':{d:"Sounds like 'hya'.",h_ex:[{j:'ひゃく',r:'hyaku',m:'hundred'}],k_ex:[{j:'ヒヤシンス',r:'hiyashinsu',m:'hyacinth'}]},
-  'hyu':{d:"Sounds like 'hyu' in 'hue'.",h_ex:[{j:'ひゅーひゅー',r:'hyuuhyuu',m:'whooshing'}],k_ex:[{j:'ヒューズ',r:'hyuuzu',m:'fuse'},{j:'ヒューマン',r:'hyuuman',m:'human'}]},
-  'hyo':{d:"Sounds like 'hyo'.",h_ex:[{j:'ひょう',r:'hyou',m:'table/chart'}],k_ex:[{j:'ヒョウ',r:'hyou',m:'leopard'}]},
-  'mya':{d:"Sounds like 'mya'.",h_ex:[{j:'みゃく',r:'myaku',m:'pulse'}],k_ex:[{j:'ミャンマー',r:'myanmaa',m:'Myanmar'}]},
-  'myu':{d:"Sounds like 'myu' in 'music'.",h_ex:[],k_ex:[{j:'ミュージック',r:'myuujikku',m:'music'},{j:'ミュージカル',r:'myuujikaru',m:'musical'}]},
-  'myo':{d:"Sounds like 'myo'.",h_ex:[{j:'みょうじ',r:'myouji',m:'surname'}],k_ex:[{j:'ミョウガ',r:'myouga',m:'Japanese ginger'}]},
-  'rya':{d:"Sounds like 'rya'.",h_ex:[{j:'りゃく',r:'ryaku',m:'abbreviation'}],k_ex:[{j:'キャリア',r:'kyaria',m:'career'}]},
-  'ryu':{d:"Sounds like 'ryu'.",h_ex:[{j:'りゅう',r:'ryuu',m:'dragon'}],k_ex:[{j:'リュック',r:'ryukku',m:'backpack'}]},
-  'ryo':{d:"Sounds like 'ryo'.",h_ex:[{j:'りょうり',r:'ryouri',m:'cooking'},{j:'りょこう',r:'ryokou',m:'travel'}],k_ex:[]},
-  'gya':{d:"Sounds like 'gya'.",h_ex:[{j:'ぎゃく',r:'gyaku',m:'reverse'}],k_ex:[{j:'ギャング',r:'gyangu',m:'gang'},{j:'ギャラリー',r:'gyararii',m:'gallery'}]},
-  'gyu':{d:"Sounds like 'gyu'.",h_ex:[{j:'ぎゅうにく',r:'gyuuniku',m:'beef'}],k_ex:[{j:'フィギュア',r:'figyua',m:'figure'}]},
-  'gyo':{d:"Sounds like 'gyo'.",h_ex:[{j:'ぎょうじ',r:'gyouji',m:'event'}],k_ex:[{j:'ギョーザ',r:'gyooza',m:'gyoza'}]},
-  'ja':{d:"Sounds like 'ja' in 'jar'.",h_ex:[{j:'じゃあ',r:'jaa',m:'well then'}],k_ex:[{j:'ジャム',r:'jamu',m:'jam'},{j:'ジャケット',r:'jaketto',m:'jacket'}]},
-  'ju':{d:"Sounds like 'ju' in 'juice'.",h_ex:[{j:'じゅう',r:'juu',m:'ten'}],k_ex:[{j:'ジュース',r:'juusu',m:'juice'}]},
-  'jo':{d:"Sounds like 'jo' in 'joke'.",h_ex:[{j:'じょせい',r:'josei',m:'woman'}],k_ex:[{j:'ジョギング',r:'jogingu',m:'jogging'}]},
-  'bya':{d:"Sounds like 'bya'.",h_ex:[{j:'さんびゃく',r:'sanbyaku',m:'300'}],k_ex:[]},
-  'byu':{d:"Sounds like 'byu'.",h_ex:[],k_ex:[{j:'インタビュー',r:'intabyuu',m:'interview'},{j:'デビュー',r:'debyuu',m:'debut'}]},
-  'byo':{d:"Sounds like 'byo'.",h_ex:[{j:'びょういん',r:'byouin',m:'hospital'}],k_ex:[]},
-  'pya':{d:"Sounds like 'pya'.",h_ex:[{j:'ろっぴゃく',r:'roppyaku',m:'600'}],k_ex:[]},
-  'pyu':{d:"Sounds like 'pyu' in 'pew'.",h_ex:[],k_ex:[{j:'コンピューター',r:'konpyuutaa',m:'computer'},{j:'ピュア',r:'pyua',m:'pure'}]},
-  'pyo':{d:"Sounds like 'pyo'.",h_ex:[{j:'はっぴょう',r:'happyou',m:'presentation'}],k_ex:[]},
-  'va':{d:"Sounds like 'va'.",h_ex:[],k_ex:[{j:'ヴァイオリン',r:'vaiorin',m:'violin'},{j:'ヴァンパイア',r:'vanpaia',m:'vampire'}]},
-  'vi':{d:"Sounds like 'vi'.",h_ex:[],k_ex:[{j:'ヴィジョン',r:'vijon',m:'vision'}]},
-  'vu':{d:"Sounds like 'vu'.",h_ex:[],k_ex:[{j:'デジャヴ',r:'dejavu',m:'déjà vu'}]},
-  've':{d:"Sounds like 've'.",h_ex:[],k_ex:[{j:'ヴェール',r:'veeru',m:'veil'}]},
-  'vo':{d:"Sounds like 'vo'.",h_ex:[],k_ex:[{j:'ヴォーカル',r:'vookaru',m:'vocal'}]},
-  'fa':{d:"Sounds like 'fa'.",h_ex:[],k_ex:[{j:'ファッション',r:'fasshon',m:'fashion'},{j:'ファイト',r:'faito',m:'fight'}]},
-  'fi':{d:"Sounds like 'fi'.",h_ex:[],k_ex:[{j:'フィルム',r:'firumu',m:'film'},{j:'フィギュア',r:'figyua',m:'figure'}]},
-  'fe':{d:"Sounds like 'fe'.",h_ex:[],k_ex:[{j:'フェンス',r:'fensu',m:'fence'}]},
-  'fo':{d:"Sounds like 'fo'.",h_ex:[],k_ex:[{j:'フォーク',r:'fooku',m:'fork'},{j:'フォーム',r:'foomu',m:'form'}]},
-  'wi':{d:"Sounds like 'wi'.",h_ex:[],k_ex:[{j:'ウィンドウ',r:'windou',m:'window'},{j:'ウィキ',r:'wiki',m:'wiki'}]},
-  'we':{d:"Sounds like 'we'.",h_ex:[],k_ex:[{j:'ウェブ',r:'webu',m:'web'},{j:'ウェット',r:'wetto',m:'wet'}]},
-  'ti':{d:"Sounds like 'ti' (tea).",h_ex:[],k_ex:[{j:'パーティー',r:'paatii',m:'party'},{j:'ティー',r:'tii',m:'tea'}]},
-  'tu':{d:"Sounds like 'tu' (too).",h_ex:[],k_ex:[{j:'タトゥー',r:'tatuu',m:'tattoo'}]},
-  'di':{d:"Sounds like 'di' (dee).",h_ex:[],k_ex:[{j:'ディスプレイ',r:'disupurei',m:'display'}]},
-  'du':{d:"Sounds like 'du' (doo).",h_ex:[],k_ex:[{j:'ヒンドゥー',r:'hinduu',m:'Hindu'}]},
-  'she':{d:"Sounds like 'she' in 'shell'.",h_ex:[],k_ex:[{j:'シェフ',r:'shefu',m:'chef'},{j:'シェア',r:'shea',m:'share'}]},
-  'che':{d:"Sounds like 'che' in 'check'.",h_ex:[],k_ex:[{j:'チェック',r:'chekku',m:'check'},{j:'チェリー',r:'cherii',m:'cherry'}]},
-  'je':{d:"Sounds like 'je' in 'jet'.",h_ex:[],k_ex:[{j:'ジェット',r:'jetto',m:'jet'},{j:'ジェリー',r:'jerii',m:'jelly'}]},
-  'fyu':{d:"Sounds like 'fyu' in 'few'.",h_ex:[],k_ex:[{j:'フュージョン',r:'fyuujon',m:'fusion'}]},
-  'tyu':{d:"Sounds like 'tyu' (rare).",h_ex:[],k_ex:[{j:'テュルク',r:'tyuruku',m:'Turk'}]},
-  'dyu':{d:"Sounds like 'dyu' in 'dew'.",h_ex:[],k_ex:[{j:'デュエット',r:'dyuetto',m:'duet'}]},
-  'xtsu':{d:"Small tsu (Sokuon). Pauses/doubles the next consonant.",h_ex:[{j:'がっこう',r:'gakkou',m:'school'},{j:'きっぷ',r:'kippu',m:'ticket'}],k_ex:[{j:'チケット',r:'chiketto',m:'ticket'},{j:'ペット',r:'petto',m:'pet'}]},
-  'long':{d:"Prolonged sound mark. Extends the previous vowel.",h_ex:[{j:'らーめん',r:'raamen',m:'ramen'}],k_ex:[{j:'コーヒー',r:'koohii',m:'coffee'},{j:'スーパー',r:'suupaa',m:'supermarket'}]}
+  'ku':{d:"Pronounced like 'koo'.",h_ex:[{j:'くつ',r:'kutsu',m:'shoes'},{j:'くま',r:'kuma',m:'bear'},{j:'くるま',r:'kuruma',m:'car'}],k_ex:[{j:'クラス',r:'kurasu',m:'class'},{j:'クイズ',r:'kuizu',m:'quiz'},{j:'クッキー',r:'kukkii',m:'cookie'}]},
+  'ke':{d:"Sounds like the letter 'K' or 'ke' in 'kettle'.",h_ex:[{j:'けむり',r:'kemuri',m:'smoke'},{j:'けさ',r:'kesa',m:'this morning'},{j:'けが',r:'kega',m:'injury'}],k_ex:[{j:'ケーキ',r:'keeki',m:'cake'},{j:'ケース',r:'keesu',m:'case'},{j:'ケータイ',r:'keetai',m:'mobile phone'}]},
+  'ko':{d:"Pronounced like 'co' in 'coin'.",h_ex:[{j:'こえ',r:'koe',m:'voice'},{j:'こころ',r:'kokoro',m:'heart'},{j:'こども',r:'kodomo',m:'child'}],k_ex:[{j:'コーヒー',r:'koohii',m:'coffee'},{j:'コート',r:'kooto',m:'coat'},{j:'コンビニ',r:'konbini',m:'convenience store'}]},
+  'sa':{d:"Sounds like the 'sa' in 'saw'.",h_ex:[{j:'さかな',r:'sakana',m:'fish'},{j:'さくら',r:'sakura',m:'cherry blossom'},{j:'さむい',r:'samui',m:'cold'}],k_ex:[{j:'サラダ',r:'sarada',m:'salad'},{j:'サッカー',r:'sakkaa',m:'soccer'},{j:'サンドイッチ',r:'sandoicchi',m:'sandwich'}]},
+  'shi':{d:"Pronounced like the word 'she'.",h_ex:[{j:'しお',r:'shio',m:'salt'},{j:'しろ',r:'shiro',m:'white/castle'},{j:'しんぶん',r:'shinbun',m:'newspaper'}],k_ex:[{j:'システム',r:'shisutemu',m:'system'},{j:'シンボル',r:'shinboru',m:'symbol'},{j:'シール',r:'shiiru',m:'sticker'}]},
+  'su':{d:"Sounds like 'su' in 'suit', shorter and unrounded.",h_ex:[{j:'すし',r:'sushi',m:'sushi'},{j:'すいか',r:'suika',m:'watermelon'},{j:'すごい',r:'sugoi',m:'amazing'}],k_ex:[{j:'スープ',r:'suupu',m:'soup'},{j:'スキー',r:'sukii',m:'ski'},{j:'スマート',r:'sumaato',m:'smart'}]},
+  'se':{d:"Pronounced like the word 'say' without the 'y'.",h_ex:[{j:'せかい',r:'sekai',m:'world'},{j:'せんせい',r:'sensei',m:'teacher'},{j:'せいと',r:'seito',m:'student'}],k_ex:[{j:'セーター',r:'seetaa',m:'sweater'},{j:'センター',r:'sentaa',m:'center'},{j:'セール',r:'seeru',m:'sale'}]},
+  'so':{d:"Sounds exactly like the word 'so'.",h_ex:[{j:'そら',r:'sora',m:'sky'},{j:'そと',r:'soto',m:'outside'},{j:'そば',r:'soba',m:'soba noodles'}],k_ex:[{j:'ソース',r:'soosu',m:'sauce'},{j:'ソフト',r:'sofuto',m:'software'},{j:'ソファ',r:'sofa',m:'sofa'}]},
+  'ta':{d:"Pronounced like the 'ta' in 'taco'.",h_ex:[{j:'たこ',r:'tako',m:'octopus'},{j:'たまご',r:'tamago',m:'egg'},{j:'たのしい',r:'tanoshii',m:'fun'}],k_ex:[{j:'タクシー',r:'takushii',m:'taxi'},{j:'タオル',r:'taoru',m:'towel'},{j:'タイム',r:'taimu',m:'time'}]},
+  'chi':{d:"Sounds like 'chee' in 'cheese'.",h_ex:[{j:'ちち',r:'chichi',m:'father'},{j:'ちず',r:'chizu',m:'map'},{j:'ちいさい',r:'chiisai',m:'small'}],k_ex:[{j:'チーズ',r:'chiizu',m:'cheese'},{j:'チケット',r:'chiketto',m:'ticket'},{j:'チーム',r:'chiimu',m:'team'}]},
+  'tsu':{d:"Pronounced like the end of 'cats' + 'oo'.",h_ex:[{j:'つき',r:'tsuki',m:'moon'},{j:'つくえ',r:'tsukue',m:'desk'},{j:'つよい',r:'tsuyoi',m:'strong'}],k_ex:[{j:'ツアー',r:'tsuaa',m:'tour'},{j:'ツナ',r:'tsuna',m:'tuna'},{j:'ツール',r:'tsuuru',m:'tool'}]},
+  'te':{d:"Sounds like 'te' in 'telephone'.",h_ex:[{j:'て',r:'te',m:'hand'},{j:'てがみ',r:'tegami',m:'letter'},{j:'てんき',r:'tenki',m:'weather'}],k_ex:[{j:'テニス',r:'tenisu',m:'tennis'},{j:'テスト',r:'tesuto',m:'test'},{j:'テーブル',r:'teeburu',m:'table'}]},
+  'to':{d:"Pronounced exactly like 'toe'.",h_ex:[{j:'とけい',r:'tokei',m:'clock'},{j:'とり',r:'tori',m:'bird'},{j:'ともだち',r:'tomodachi',m:'friend'}],k_ex:[{j:'トイレ',r:'toire',m:'toilet'},{j:'トマト',r:'tomato',m:'tomato'},{j:'トレーニング',r:'toreeningu',m:'training'}]},
+  'na':{d:"Sounds like 'nah'.",h_ex:[{j:'なつ',r:'natsu',m:'summer'},{j:'なまえ',r:'namae',m:'name'},{j:'なに',r:'nani',m:'what'}],k_ex:[{j:'ナイフ',r:'naifu',m:'knife'},{j:'ナンバー',r:'nanbaa',m:'number'},{j:'ナース',r:'naasu',m:'nurse'}]},
+  'ni':{d:"Pronounced exactly like the word 'knee'.",h_ex:[{j:'にく',r:'niku',m:'meat'},{j:'にほん',r:'nihon',m:'Japan'},{j:'にわ',r:'niwa',m:'garden'}],k_ex:[{j:'ニュース',r:'nyuusu',m:'news'},{j:'ニット',r:'nitto',m:'knit'},{j:'ニコニコ',r:'nikoniko',m:'smiling'}]},
+  'nu':{d:"Sounds like 'noo' in 'noon'.",h_ex:[{j:'いぬ',r:'inu',m:'dog'},{j:'ぬの',r:'nuno',m:'cloth'},{j:'ぬいぐるみ',r:'nuigurumi',m:'stuffed animal'}],k_ex:[{j:'ヌードル',r:'nuudoru',m:'noodle'},{j:'カヌー',r:'kanuu',m:'canoe'},{j:'ビーナス',r:'biinasu',m:'Venus'}]},
+  'ne':{d:"Pronounced like 'nay' without the 'y'.",h_ex:[{j:'ねこ',r:'neko',m:'cat'},{j:'ねずみ',r:'nezumi',m:'mouse'},{j:'ねむい',r:'nemui',m:'sleepy'}],k_ex:[{j:'ネクタイ',r:'nekutai',m:'necktie'},{j:'ネット',r:'netto',m:'net'},{j:'ネオン',r:'neon',m:'neon'}]},
+  'no':{d:"Sounds exactly like the English word 'no'.",h_ex:[{j:'のみもの',r:'nomimono',m:'beverage'},{j:'のど',r:'nodo',m:'throat'},{j:'のむ',r:'nomu',m:'to drink'}],k_ex:[{j:'ノート',r:'nooto',m:'notebook'},{j:'ノック',r:'nokku',m:'knock'},{j:'ノイズ',r:'noizu',m:'noise'}]},
+  'ha':{d:"Pronounced like 'ha' when laughing.",h_ex:[{j:'はな',r:'hana',m:'flower'},{j:'はこ',r:'hako',m:'box'},{j:'はし',r:'hashi',m:'chopsticks'}],k_ex:[{j:'ハンバーガー',r:'hanbaagaa',m:'hamburger'},{j:'ハム',r:'hamu',m:'ham'},{j:'ハート',r:'haato',m:'heart'}]},
+  'hi':{d:"Sounds exactly like the word 'he'.",h_ex:[{j:'ひ',r:'hi',m:'fire'},{j:'ひこうき',r:'hikouki',m:'airplane'},{j:'ひと',r:'hito',m:'person'}],k_ex:[{j:'ヒーター',r:'hiitaa',m:'heater'},{j:'ヒント',r:'hinto',m:'hint'},{j:'ヒーロー',r:'hiiroo',m:'hero'}]},
+  'fu':{d:"A soft blow of air, halfway between 'f' and 'h' + 'oo'.",h_ex:[{j:'ふね',r:'fune',m:'ship'},{j:'ふゆ',r:'fuyu',m:'winter'},{j:'ふるい',r:'furui',m:'old'}],k_ex:[{j:'フォーク',r:'fooku',m:'fork'},{j:'フランス',r:'furansu',m:'France'},{j:'フルーツ',r:'furuutsu',m:'fruit'}]},
+  'he':{d:"Pronounced like 'hay', cut short.",h_ex:[{j:'へや',r:'heya',m:'room'},{j:'へび',r:'hebi',m:'snake'},{j:'へいわ',r:'heiwa',m:'peace'}],k_ex:[{j:'ヘリコプター',r:'herikoputaa',m:'helicopter'},{j:'ヘルメット',r:'herumetto',m:'helmet'},{j:'ヘッド',r:'heddo',m:'head'}]},
+  'ho':{d:"Sounds like 'ho' in 'hope'.",h_ex:[{j:'ほん',r:'hon',m:'book'},{j:'ほし',r:'hoshi',m:'star'},{j:'ほか',r:'hoka',m:'other'}],k_ex:[{j:'ホテル',r:'hoteru',m:'hotel'},{j:'ホース',r:'hoosu',m:'hose'},{j:'ホワイト',r:'howaito',m:'white'}]},
+  'ma':{d:"Pronounced like 'ma' as in mother.",h_ex:[{j:'まち',r:'machi',m:'town'},{j:'まど',r:'mado',m:'window'},{j:'まいにち',r:'mainichi',m:'every day'}],k_ex:[{j:'マウス',r:'mausu',m:'mouse'},{j:'マスク',r:'masuku',m:'mask'},{j:'マナー',r:'manaa',m:'manners'}]},
+  'mi':{d:"Sounds exactly like the word 'me'.",h_ex:[{j:'みず',r:'mizu',m:'water'},{j:'みみ',r:'mimi',m:'ear'},{j:'みせ',r:'mise',m:'shop'}],k_ex:[{j:'ミルク',r:'miruku',m:'milk'},{j:'ミニ',r:'mini',m:'mini'},{j:'ミス',r:'misu',m:'mistake'}]},
+  'mu':{d:"Pronounced like 'moo', the sound a cow makes.",h_ex:[{j:'むし',r:'mushi',m:'bug'},{j:'むら',r:'mura',m:'village'},{j:'むずかしい',r:'muzukashii',m:'difficult'}],k_ex:[{j:'ムード',r:'muudo',m:'mood'},{j:'ムービー',r:'muubii',m:'movie'},{j:'ムラ',r:'mura',m:'unevenness'}]},
+  'me':{d:"Sounds like 'me' in 'metal'.",h_ex:[{j:'め',r:'me',m:'eye'},{j:'めがね',r:'megane',m:'glasses'},{j:'めし',r:'meshi',m:'meal'}],k_ex:[{j:'メロン',r:'meron',m:'melon'},{j:'メモ',r:'memo',m:'memo'},{j:'メール',r:'meeru',m:'email'}]},
+  'mo':{d:"Pronounced like 'mo' in 'more'.",h_ex:[{j:'もも',r:'momo',m:'peach'},{j:'もり',r:'mori',m:'forest'},{j:'もの',r:'mono',m:'thing'}],k_ex:[{j:'モーター',r:'mootaa',m:'motor'},{j:'モデル',r:'moderu',m:'model'},{j:'モノレール',r:'monoreeru',m:'monorail'}]},
+  'ya':{d:"Sounds like 'yah'.",h_ex:[{j:'やま',r:'yama',m:'mountain'},{j:'やさい',r:'yasai',m:'vegetable'},{j:'やすい',r:'yasui',m:'cheap'}],k_ex:[{j:'ヤンキー',r:'yankii',m:'Yankee'},{j:'タイヤ',r:'taiya',m:'tire'},{j:'ヤクルト',r:'yakuruto',m:'Yakult'}]},
+  'yu':{d:"Pronounced exactly like the English word 'you'.",h_ex:[{j:'ゆき',r:'yuki',m:'snow'},{j:'ゆめ',r:'yume',m:'dream'},{j:'ゆっくり',r:'yukkuri',m:'slowly'}],k_ex:[{j:'ユーザー',r:'yuuzaa',m:'user'},{j:'ユーモア',r:'yuumoa',m:'humor'},{j:'ユニフォーム',r:'yunifoomu',m:'uniform'}]},
+  'yo':{d:"Sounds like the greeting 'yo!'.",h_ex:[{j:'よる',r:'yoru',m:'night'},{j:'よむ',r:'yomu',m:'to read'},{j:'よい',r:'yoi',m:'good'}],k_ex:[{j:'ヨーロッパ',r:'yooroppa',m:'Europe'},{j:'ヨット',r:'yotto',m:'yacht'},{j:'ヨガ',r:'yoga',m:'yoga'}]},
+  'ra':{d:"A light tap of the tongue, between 'r', 'l', and 'd' + 'ah'.",h_ex:[{j:'らいしゅう',r:'raishuu',m:'next week'},{j:'らく',r:'raku',m:'easy'},{j:'らーめん',r:'raamen',m:'ramen'}],k_ex:[{j:'ラジオ',r:'rajio',m:'radio'},{j:'ラーメン',r:'raamen',m:'ramen'},{j:'ランプ',r:'ranpu',m:'lamp'}]},
+  'ri':{d:"A light tap, sounding like 'ree' in 'reed'.",h_ex:[{j:'りんご',r:'ringo',m:'apple'},{j:'りょこう',r:'ryokou',m:'travel'},{j:'りか',r:'rika',m:'science'}],k_ex:[{j:'リボン',r:'ribon',m:'ribbon'},{j:'リング',r:'ringu',m:'ring'},{j:'リモコン',r:'rimokon',m:'remote control'}]},
+  'ru':{d:"A light tap, sounding like 'roo' in 'root'.",h_ex:[{j:'さる',r:'saru',m:'monkey'},{j:'はる',r:'haru',m:'spring'},{j:'るす',r:'rusu',m:'absence'}],k_ex:[{j:'ルール',r:'ruuru',m:'rule'},{j:'ルビー',r:'rubii',m:'ruby'},{j:'ループ',r:'ruupu',m:'loop'}]},
+  're':{d:"A light tap, sounding like 're' in 'red'.",h_ex:[{j:'れきし',r:'rekishi',m:'history'},{j:'れんしゅう',r:'renshuu',m:'practice'},{j:'れつ',r:'retsu',m:'row/line'}],k_ex:[{j:'レストラン',r:'resutoran',m:'restaurant'},{j:'レモン',r:'remon',m:'lemon'},{j:'レコード',r:'rekoodo',m:'record'}]},
+  'ro':{d:"A light tap, sounding like 'row' as in rowing.",h_ex:[{j:'ろく',r:'roku',m:'six'},{j:'ろうそく',r:'rousoku',m:'candle'},{j:'ろうか',r:'rouka',m:'hallway'}],k_ex:[{j:'ロボット',r:'robotto',m:'robot'},{j:'ロケット',r:'roketto',m:'rocket'},{j:'ロール',r:'rooru',m:'roll'}]},
+  'wa':{d:"Pronounced like 'wa' in 'water'.",h_ex:[{j:'わたし',r:'watashi',m:'I/me'},{j:'わに',r:'wani',m:'crocodile'},{j:'わかる',r:'wakaru',m:'to understand'}],k_ex:[{j:'ワイン',r:'wain',m:'wine'},{j:'ワット',r:'watto',m:'watt'},{j:'ワールド',r:'waarudo',m:'world'}]},
+  'wo':{d:"Pronounced like 'oh', used strictly as a grammatical particle.",h_ex:[{j:'ほんを',r:'hon wo',m:'book (object)'},{j:'みずを',r:'mizu wo',m:'water (object)'},{j:'うたをきく',r:'uta wo kiku',m:'listen to a song'}],k_ex:[{j:'ヲタク',r:'wotaku',m:'otaku (stylized)'},{j:'ヲ（助詞）',r:'wo',m:'object particle'},{j:'ヲ（旧字）',r:'wo kogo',m:'archaic form'}]},
+  'n':{d:"A nasal consonant, sounding like 'n' or 'm' at end of syllable.",h_ex:[{j:'ほん',r:'hon',m:'book'},{j:'てんき',r:'tenki',m:'weather'},{j:'にほん',r:'nihon',m:'Japan'}],k_ex:[{j:'パン',r:'pan',m:'bread'},{j:'ペン',r:'pen',m:'pen'},{j:'ランチ',r:'ranchi',m:'lunch'}]},
+  'ga':{d:"Sounds like 'ga' in 'gargle'.",h_ex:[{j:'がっこう',r:'gakkou',m:'school'},{j:'がくせい',r:'gakusei',m:'student'},{j:'がまん',r:'gaman',m:'patience'}],k_ex:[{j:'ガラス',r:'garasu',m:'glass'},{j:'ガソリン',r:'gasorin',m:'gasoline'},{j:'ガム',r:'gamu',m:'gum'}]},
+  'gi':{d:"Pronounced like 'gee' in 'geese'.",h_ex:[{j:'ぎんこう',r:'ginkou',m:'bank'},{j:'ぎじゅつ',r:'gijutsu',m:'technology'},{j:'ぎもん',r:'gimon',m:'doubt'}],k_ex:[{j:'ギター',r:'gitaa',m:'guitar'},{j:'ギャグ',r:'gyagu',m:'joke'},{j:'ギリシャ',r:'girisha',m:'Greece'}]},
+  'gu':{d:"Sounds like 'goo' in 'goose'.",h_ex:[{j:'ぐるぐる',r:'guruguru',m:'spinning'},{j:'ぐあい',r:'guai',m:'condition'},{j:'ぐち',r:'guchi',m:'complaint'}],k_ex:[{j:'グラス',r:'gurasu',m:'glass/cup'},{j:'グループ',r:'guruupu',m:'group'},{j:'グラム',r:'guramu',m:'gram'}]},
+  'ge':{d:"Pronounced like 'ge' in 'get'.",h_ex:[{j:'げんき',r:'genki',m:'healthy'},{j:'げつようび',r:'getsuyoubi',m:'Monday'},{j:'げいじゅつ',r:'geijutsu',m:'art'}],k_ex:[{j:'ゲーム',r:'geemu',m:'game'},{j:'ゲスト',r:'gesuto',m:'guest'},{j:'ゲート',r:'geeto',m:'gate'}]},
+  'go':{d:"Sounds exactly like the word 'go'.",h_ex:[{j:'ごはん',r:'gohan',m:'meal/rice'},{j:'ごみ',r:'gomi',m:'trash'},{j:'ごがつ',r:'gogatsu',m:'May'}],k_ex:[{j:'ゴルフ',r:'gorufu',m:'golf'},{j:'ゴム',r:'gomu',m:'rubber'},{j:'ゴール',r:'gooru',m:'goal'}]},
+  'za':{d:"Pronounced like 'za' in 'bizarre'.",h_ex:[{j:'ざっし',r:'zasshi',m:'magazine'},{j:'ざんねん',r:'zannen',m:'regrettable'},{j:'ざいりょう',r:'zairyou',m:'ingredient'}],k_ex:[{j:'デザイン',r:'dezain',m:'design'},{j:'ピザ',r:'piza',m:'pizza'},{j:'ザック',r:'zakku',m:'backpack'}]},
+  'ji':{d:"Sounds like 'jee' in 'jeep'.",h_ex:[{j:'じかん',r:'jikan',m:'time'},{j:'じてんしゃ',r:'jitensha',m:'bicycle'},{j:'じゆう',r:'jiyuu',m:'freedom'}],k_ex:[{j:'ジーンズ',r:'jiinzu',m:'jeans'},{j:'ラジオ',r:'rajio',m:'radio'},{j:'ジャム',r:'jamu',m:'jam'}]},
+  'zu':{d:"Pronounced like the word 'zoo'.",h_ex:[{j:'みず',r:'mizu',m:'water'},{j:'ずっと',r:'zutto',m:'always'},{j:'ずぼん',r:'zubon',m:'trousers'}],k_ex:[{j:'チーズ',r:'chiizu',m:'cheese'},{j:'サイズ',r:'saizu',m:'size'},{j:'ガーゼ',r:'gaaze',m:'gauze'}]},
+  'ze':{d:"Sounds like 'ze' in 'zest'.",h_ex:[{j:'ぜんぶ',r:'zenbu',m:'everything'},{j:'ぜんぜん',r:'zenzen',m:'not at all'},{j:'ぜいきん',r:'zeikin',m:'tax'}],k_ex:[{j:'ゼリー',r:'zerii',m:'jelly'},{j:'ゼロ',r:'zero',m:'zero'},{j:'ゼブラ',r:'zebura',m:'zebra'}]},
+  'zo':{d:"Pronounced like 'zo' in 'zone'.",h_ex:[{j:'かぞく',r:'kazoku',m:'family'},{j:'ぞう',r:'zou',m:'elephant'},{j:'ぞうきん',r:'zoukin',m:'rag/mop'}],k_ex:[{j:'ゾーン',r:'zoon',m:'zone'},{j:'ゾウ',r:'zou',m:'elephant'},{j:'ゾンビ',r:'zonbi',m:'zombie'}]},
+  'da':{d:"Sounds like 'da' in 'dad'.",h_ex:[{j:'だいがく',r:'daigaku',m:'university'},{j:'だれ',r:'dare',m:'who'},{j:'だいじょうぶ',r:'daijoubu',m:'are you OK?'}],k_ex:[{j:'ダンス',r:'dansu',m:'dance'},{j:'ダブル',r:'daburu',m:'double'},{j:'ダイヤ',r:'daiya',m:'diamond'}]},
+  'dji':{d:"An older variant, pronounced like 'jee'.",h_ex:[{j:'はなぢ',r:'hanadji',m:'nosebleed'},{j:'ちぢむ',r:'chidzimu',m:'to shrink'},{j:'こぢんまり',r:'kodjinmari',m:'compact/cozy'}],k_ex:[{j:'ヂ（古字）',r:'ji (kogo)',m:'archaic form'},{j:'ハナヂ',r:'hanadji',m:'nosebleed'},{j:'ヂカラ',r:'djikara',m:'power (archaic)'}]},
+  'dzu':{d:"An older variant, pronounced like 'zoo'.",h_ex:[{j:'つづく',r:'tsudzuku',m:'to continue'},{j:'みかづき',r:'mikadzuki',m:'crescent moon'},{j:'こづつみ',r:'kodzutsumi',m:'package'}],k_ex:[{j:'ヅ（古字）',r:'zu (kogo)',m:'archaic form'},{j:'ミカヅキ',r:'mikadzuki',m:'crescent moon'},{j:'コヅツミ',r:'kodzutsumi',m:'package'}]},
+  'de':{d:"Pronounced like 'de' in 'desk'.",h_ex:[{j:'でんわ',r:'denwa',m:'telephone'},{j:'でんしゃ',r:'densha',m:'train'},{j:'でぐち',r:'deguchi',m:'exit'}],k_ex:[{j:'デパート',r:'depaato',m:'department store'},{j:'データ',r:'deeta',m:'data'},{j:'デザート',r:'dezaato',m:'dessert'}]},
+  'do':{d:"Sounds like 'doe', a female deer.",h_ex:[{j:'どうぶつ',r:'doubutsu',m:'animal'},{j:'どこ',r:'doko',m:'where'},{j:'どようび',r:'doyoubi',m:'Saturday'}],k_ex:[{j:'ドア',r:'doa',m:'door'},{j:'ドイツ',r:'doitsu',m:'Germany'},{j:'ドラゴン',r:'doragon',m:'dragon'}]},
+  'ba':{d:"Pronounced like the sound sheep make: 'baa'.",h_ex:[{j:'ばしょ',r:'basho',m:'place'},{j:'かばん',r:'kaban',m:'bag'},{j:'ばんごはん',r:'bangohan',m:'dinner'}],k_ex:[{j:'バス',r:'basu',m:'bus'},{j:'バナナ',r:'banana',m:'banana'},{j:'バター',r:'bataa',m:'butter'}]},
+  'bi':{d:"Sounds exactly like 'bee', the insect.",h_ex:[{j:'びじゅつかん',r:'bijutsukan',m:'art museum'},{j:'びっくり',r:'bikkuri',m:'surprised'},{j:'びょういん',r:'byouin',m:'hospital'}],k_ex:[{j:'ビール',r:'biiru',m:'beer'},{j:'ビデオ',r:'bideo',m:'video'},{j:'ビタミン',r:'bitamin',m:'vitamin'}]},
+  'bu':{d:"Pronounced like 'boo'.",h_ex:[{j:'ぶどう',r:'budou',m:'grapes'},{j:'ぶたにく',r:'butaniku',m:'pork'},{j:'ぶんか',r:'bunka',m:'culture'}],k_ex:[{j:'ブロック',r:'burokku',m:'block'},{j:'テーブル',r:'teeburu',m:'table'},{j:'ブランド',r:'burando',m:'brand'}]},
+  'be':{d:"Sounds like 'be' in 'bed'.",h_ex:[{j:'べんきょう',r:'benkyou',m:'study'},{j:'たべる',r:'taberu',m:'to eat'},{j:'べんり',r:'benri',m:'convenient'}],k_ex:[{j:'ベッド',r:'beddo',m:'bed'},{j:'ベルト',r:'beruto',m:'belt'},{j:'ベスト',r:'besuto',m:'best'}]},
+  'bo':{d:"Pronounced like 'bo' in 'boat'.",h_ex:[{j:'ぼうし',r:'boushi',m:'hat'},{j:'あそぶ',r:'asobu',m:'to play'},{j:'ぼくじょう',r:'bokujou',m:'ranch'}],k_ex:[{j:'ボタン',r:'botan',m:'button'},{j:'ボール',r:'booru',m:'ball'},{j:'ボート',r:'booto',m:'boat'}]},
+  'pa':{d:"Sounds like 'pa' as in father.",h_ex:[{j:'しんぱい',r:'shinpai',m:'worry'},{j:'いっぱい',r:'ippai',m:'full'},{j:'ぱちぱち',r:'pachipachi',m:'crackling'}],k_ex:[{j:'パン',r:'pan',m:'bread'},{j:'パーティー',r:'paatii',m:'party'},{j:'パスポート',r:'pasupooto',m:'passport'}]},
+  'pi':{d:"Pronounced like 'pea'.",h_ex:[{j:'えんぴつ',r:'enpitsu',m:'pencil'},{j:'はっぴょう',r:'happyou',m:'presentation'},{j:'ぴかぴか',r:'pikapika',m:'sparkly'}],k_ex:[{j:'ピンク',r:'pinku',m:'pink'},{j:'ピアノ',r:'piano',m:'piano'},{j:'ピザ',r:'piza',m:'pizza'}]},
+  'pu':{d:"Sounds like 'poo' in 'pool'.",h_ex:[{j:'きっぷ',r:'kippu',m:'ticket'},{j:'ぷかぷか',r:'pukapuka',m:'floating'},{j:'てっぺん',r:'teppen',m:'summit'}],k_ex:[{j:'プール',r:'puuru',m:'pool'},{j:'プラス',r:'purasu',m:'plus'},{j:'プリン',r:'purin',m:'pudding'}]},
+  'pe':{d:"Pronounced like 'pe' in 'pet'.",h_ex:[{j:'ぺらぺら',r:'perapera',m:'fluent'},{j:'ぺこぺこ',r:'pekopeko',m:'hungry'},{j:'てっぺん',r:'teppen',m:'top/peak'}],k_ex:[{j:'ペン',r:'pen',m:'pen'},{j:'ページ',r:'peeji',m:'page'},{j:'ペット',r:'petto',m:'pet'}]},
+  'po':{d:"Sounds like 'po' in 'poke'.",h_ex:[{j:'さんぽ',r:'sanpo',m:'stroll'},{j:'ぽかぽか',r:'pokapoka',m:'warm'},{j:'にっぽん',r:'nippon',m:'Japan'}],k_ex:[{j:'ポスト',r:'posuto',m:'postbox'},{j:'ポケット',r:'poketto',m:'pocket'},{j:'ポスター',r:'posutaa',m:'poster'}]},
+  'kya':{d:"Sounds like 'k' + 'ya'.",h_ex:[{j:'きゃく',r:'kyaku',m:'guest'},{j:'きゃしゃ',r:'kyasha',m:'delicate'},{j:'きゃあ',r:'kyaa',m:'eek! (exclaim)'}],k_ex:[{j:'キャベツ',r:'kyabetsu',m:'cabbage'},{j:'キャンプ',r:'kyanpu',m:'camp'},{j:'キャラクター',r:'kyarakutaa',m:'character'}]},
+  'kyu':{d:"Sounds like 'cute'.",h_ex:[{j:'きゅうり',r:'kyuuri',m:'cucumber'},{j:'きゅうしょく',r:'kyuushoku',m:'school lunch'},{j:'きゅうに',r:'kyuuni',m:'suddenly'}],k_ex:[{j:'ドキュメント',r:'dokyumento',m:'document'},{j:'キューブ',r:'kyuubu',m:'cube'},{j:'キュウリ',r:'kyuuri',m:'cucumber'}]},
+  'kyo':{d:"Sounds like 'Kyoto'.",h_ex:[{j:'きょう',r:'kyou',m:'today'},{j:'きょうしつ',r:'kyoushitsu',m:'classroom'},{j:'きょうみ',r:'kyoumi',m:'interest'}],k_ex:[{j:'トーキョー',r:'tookyoo',m:'Tokyo'},{j:'キョウリュウ',r:'kyouryuu',m:'dinosaur'},{j:'キョリ',r:'kyori',m:'distance'}]},
+  'sha':{d:"Sounds like 'sha' in 'shark'.",h_ex:[{j:'しゃしん',r:'shashin',m:'photograph'},{j:'しゃかい',r:'shakai',m:'society'},{j:'しゃべる',r:'shaberu',m:'to talk'}],k_ex:[{j:'シャツ',r:'shatsu',m:'shirt'},{j:'シャワー',r:'shawaa',m:'shower'},{j:'シャンプー',r:'shanpuu',m:'shampoo'}]},
+  'shu':{d:"Sounds like 'shu' in 'shoe'.",h_ex:[{j:'しゅみ',r:'shumi',m:'hobby'},{j:'しゅくだい',r:'shukudai',m:'homework'},{j:'しゅと',r:'shuto',m:'capital city'}],k_ex:[{j:'シューズ',r:'shuuzu',m:'shoes'},{j:'シュート',r:'shuuto',m:'shoot'},{j:'シュガー',r:'shugaa',m:'sugar'}]},
+  'sho':{d:"Sounds like 'sho' in 'short'.",h_ex:[{j:'しょくどう',r:'shokudou',m:'dining hall'},{j:'しょうゆ',r:'shouyu',m:'soy sauce'},{j:'しょうがっこう',r:'shougakkou',m:'elementary school'}],k_ex:[{j:'ショップ',r:'shoppu',m:'shop'},{j:'ショー',r:'shoo',m:'show'},{j:'ショック',r:'shokku',m:'shock'}]},
+  'cha':{d:"Sounds like 'cha' in 'charm'.",h_ex:[{j:'おちゃ',r:'ocha',m:'tea'},{j:'ちゃんと',r:'chanto',m:'properly'},{j:'ちゃわん',r:'chawan',m:'rice bowl'}],k_ex:[{j:'チャンス',r:'chansu',m:'chance'},{j:'チャンネル',r:'channeru',m:'channel'},{j:'チャット',r:'chatto',m:'chat'}]},
+  'chu':{d:"Sounds like 'chu' in 'chew'.",h_ex:[{j:'ちゅうごく',r:'chuugoku',m:'China'},{j:'ちゅうしゃ',r:'chuusha',m:'injection'},{j:'ちゅうがっこう',r:'chuugakkou',m:'middle school'}],k_ex:[{j:'チューブ',r:'chuubu',m:'tube'},{j:'チューリップ',r:'chuurippu',m:'tulip'},{j:'チュートリアル',r:'chuutoriaru',m:'tutorial'}]},
+  'cho':{d:"Sounds like 'cho' in 'chore'.",h_ex:[{j:'ちょっと',r:'chotto',m:'a little'},{j:'ちょうちょ',r:'choucho',m:'butterfly'},{j:'ちょうど',r:'choudo',m:'exactly'}],k_ex:[{j:'チョコ',r:'choko',m:'chocolate'},{j:'チョーク',r:'chooku',m:'chalk'},{j:'チョッキ',r:'chokki',m:'vest'}]},
+  'nya':{d:"Sounds like 'nya' (meow).",h_ex:[{j:'こんにゃく',r:'konnyaku',m:'konjac'},{j:'にゃんこ',r:'nyanko',m:'kitty'},{j:'にゃあ',r:'nyaa',m:'meow'}],k_ex:[{j:'ニャー',r:'nyaa',m:'meow'},{j:'ニャンコ',r:'nyanko',m:'kitty'},{j:'コンニャク',r:'konnyaku',m:'konjac'}]},
+  'nyu':{d:"Sounds like 'new'.",h_ex:[{j:'ぎゅうにゅう',r:'gyuunyuu',m:'milk'},{j:'にゅういん',r:'nyuuin',m:'hospitalization'},{j:'にゅうがく',r:'nyuugaku',m:'school enrollment'}],k_ex:[{j:'ニュース',r:'nyuusu',m:'news'},{j:'ニューヨーク',r:'nyuuyooku',m:'New York'},{j:'ニュアンス',r:'nyuansu',m:'nuance'}]},
+  'nyo':{d:"Sounds like 'nyo'.",h_ex:[{j:'にょう',r:'nyou',m:'urine'},{j:'にょろにょろ',r:'nyoronyoro',m:'wriggling'},{j:'にょきにょき',r:'nyokinyoki',m:'sprouting up'}],k_ex:[{j:'ニョッキ',r:'nyokki',m:'gnocchi'},{j:'ニョロニョロ',r:'nyoronyoro',m:'wriggling'},{j:'ニョキニョキ',r:'nyokinyoki',m:'sprouting up'}]},
+  'hya':{d:"Sounds like 'hya'.",h_ex:[{j:'ひゃく',r:'hyaku',m:'hundred'},{j:'さんびゃく',r:'sanbyaku',m:'300'},{j:'ひゃっかてん',r:'hyakkaten',m:'department store'}],k_ex:[{j:'ヒヤシンス',r:'hiyashinsu',m:'hyacinth'},{j:'ヒャク',r:'hyaku',m:'hundred'},{j:'ヒャクエン',r:'hyakuen',m:'100 yen'}]},
+  'hyu':{d:"Sounds like 'hyu' in 'hue'.",h_ex:[{j:'ひゅーひゅー',r:'hyuuhyuu',m:'whooshing'},{j:'ひゅうと',r:'hyuuto',m:'whistling wind'},{j:'ひゅんと',r:'hyunto',m:'zoom/whoosh'}],k_ex:[{j:'ヒューズ',r:'hyuuzu',m:'fuse'},{j:'ヒューマン',r:'hyuuman',m:'human'},{j:'ヒュッテ',r:'hyutte',m:'mountain hut'}]},
+  'hyo':{d:"Sounds like 'hyo'.",h_ex:[{j:'ひょう',r:'hyou',m:'table/chart'},{j:'ひょうが',r:'hyouga',m:'glacier'},{j:'ひょっとして',r:'hyottoshite',m:'perhaps'}],k_ex:[{j:'ヒョウ',r:'hyou',m:'leopard'},{j:'ヒョウガ',r:'hyouga',m:'glacier'},{j:'ヒョウジュン',r:'hyoujun',m:'standard'}]},
+  'mya':{d:"Sounds like 'mya'.",h_ex:[{j:'みゃく',r:'myaku',m:'pulse'},{j:'どうみゃく',r:'doumyaku',m:'artery'},{j:'じょうみゃく',r:'joumyaku',m:'vein'}],k_ex:[{j:'ミャンマー',r:'myanmaa',m:'Myanmar'},{j:'ミャク',r:'myaku',m:'pulse'},{j:'ミャーミャー',r:'myaamyaa',m:'meowing'}]},
+  'myu':{d:"Sounds like 'myu' in 'music'.",h_ex:[],k_ex:[{j:'ミュージック',r:'myuujikku',m:'music'},{j:'ミュージカル',r:'myuujikaru',m:'musical'},{j:'ミュート',r:'myuuto',m:'mute'}]},
+  'myo':{d:"Sounds like 'myo'.",h_ex:[{j:'みょうじ',r:'myouji',m:'surname'},{j:'みょうにち',r:'myounichi',m:'tomorrow (formal)'},{j:'みょうが',r:'myouga',m:'Japanese ginger'}],k_ex:[{j:'ミョウガ',r:'myouga',m:'Japanese ginger'},{j:'ミョウバン',r:'myouban',m:'alum'},{j:'ミョウジ',r:'myouji',m:'surname'}]},
+  'rya':{d:"Sounds like 'rya'.",h_ex:[{j:'りゃく',r:'ryaku',m:'abbreviation'},{j:'しょうりゃく',r:'shouryaku',m:'omission'},{j:'こうりゃく',r:'kouryaku',m:'strategy'}],k_ex:[{j:'キャリア',r:'kyaria',m:'career'},{j:'リャクゴ',r:'ryakugo',m:'abbreviated name'},{j:'リャクズ',r:'ryakuzu',m:'simplified map'}]},
+  'ryu':{d:"Sounds like 'ryu'.",h_ex:[{j:'りゅう',r:'ryuu',m:'dragon'},{j:'りゅうがく',r:'ryuugaku',m:'study abroad'},{j:'りゅうこう',r:'ryuukou',m:'fashion/trend'}],k_ex:[{j:'リュック',r:'ryukku',m:'backpack'},{j:'リュウグウ',r:'ryuuguu',m:'dragon palace'},{j:'リュウ',r:'ryuu',m:'dragon'}]},
+  'ryo':{d:"Sounds like 'ryo'.",h_ex:[{j:'りょうり',r:'ryouri',m:'cooking'},{j:'りょこう',r:'ryokou',m:'travel'},{j:'りょかん',r:'ryokan',m:'Japanese inn'}],k_ex:[{j:'リョウリ',r:'ryouri',m:'cooking (kata.)'},{j:'リョコウ',r:'ryokou',m:'travel (kata.)'},{j:'リョカン',r:'ryokan',m:'inn (kata.)'}]},
+  'gya':{d:"Sounds like 'gya'.",h_ex:[{j:'ぎゃく',r:'gyaku',m:'reverse'},{j:'ぎゃくてん',r:'gyakuten',m:'reversal'},{j:'ぎゃくせつ',r:'gyakusetsu',m:'paradox'}],k_ex:[{j:'ギャング',r:'gyangu',m:'gang'},{j:'ギャラリー',r:'gyararii',m:'gallery'},{j:'ギャップ',r:'gyappu',m:'gap'}]},
+  'gyu':{d:"Sounds like 'gyu'.",h_ex:[{j:'ぎゅうにく',r:'gyuuniku',m:'beef'},{j:'ぎゅうにゅう',r:'gyuunyuu',m:'milk'},{j:'ぎゅうどん',r:'gyuudon',m:'beef rice bowl'}],k_ex:[{j:'フィギュア',r:'figyua',m:'figure'},{j:'ギュウニク',r:'gyuuniku',m:'beef'},{j:'ギュウドン',r:'gyuudon',m:'beef bowl'}]},
+  'gyo':{d:"Sounds like 'gyo'.",h_ex:[{j:'ぎょうじ',r:'gyouji',m:'event'},{j:'ぎょうむ',r:'gyoumu',m:'work/business'},{j:'ぎょうれつ',r:'gyouretsu',m:'queue/line'}],k_ex:[{j:'ギョーザ',r:'gyooza',m:'gyoza'},{j:'ギョウジ',r:'gyouji',m:'event'},{j:'ギョカイ',r:'gyokai',m:'fishery industry'}]},
+  'ja':{d:"Sounds like 'ja' in 'jar'.",h_ex:[{j:'じゃあ',r:'jaa',m:'well then'},{j:'じゃがいも',r:'jagaimo',m:'potato'},{j:'じゃんけん',r:'janken',m:'rock-paper-scissors'}],k_ex:[{j:'ジャム',r:'jamu',m:'jam'},{j:'ジャケット',r:'jaketto',m:'jacket'},{j:'ジャングル',r:'janguru',m:'jungle'}]},
+  'ju':{d:"Sounds like 'ju' in 'juice'.",h_ex:[{j:'じゅう',r:'juu',m:'ten'},{j:'じゅぎょう',r:'jugyou',m:'class/lesson'},{j:'じゅんび',r:'junbi',m:'preparation'}],k_ex:[{j:'ジュース',r:'juusu',m:'juice'},{j:'ジュエリー',r:'juerii',m:'jewelry'},{j:'ジューシー',r:'juushii',m:'juicy'}]},
+  'jo':{d:"Sounds like 'jo' in 'joke'.",h_ex:[{j:'じょせい',r:'josei',m:'woman'},{j:'じょうず',r:'jouzu',m:'skillful'},{j:'じょうほう',r:'jouhou',m:'information'}],k_ex:[{j:'ジョギング',r:'jogingu',m:'jogging'},{j:'ジョーカー',r:'jookaa',m:'joker'},{j:'ジョイント',r:'jointo',m:'joint'}]},
+  'bya':{d:"Sounds like 'bya'.",h_ex:[{j:'さんびゃく',r:'sanbyaku',m:'300'},{j:'ろっぴゃく',r:'roppyaku',m:'600'},{j:'はっぴゃく',r:'happyaku',m:'800'}],k_ex:[{j:'ビャクダン',r:'byakudan',m:'sandalwood'},{j:'ビャッコ',r:'byakko',m:'white tiger'},{j:'ビャク',r:'byaku',m:'hundred (archaic)'}]},
+  'byu':{d:"Sounds like 'byu'.",h_ex:[{j:'びゅうびゅう',r:'byuubyuu',m:'howling wind'},{j:'びゅーと',r:'byuuto',m:'whooshing'},{j:'びゅん',r:'byun',m:'swish'}],k_ex:[{j:'インタビュー',r:'intabyuu',m:'interview'},{j:'デビュー',r:'debyuu',m:'debut'},{j:'ビュッフェ',r:'byuffe',m:'buffet'}]},
+  'byo':{d:"Sounds like 'byo'.",h_ex:[{j:'びょういん',r:'byouin',m:'hospital'},{j:'びょうき',r:'byouki',m:'illness'},{j:'びょうどう',r:'byoudou',m:'equality'}],k_ex:[{j:'ビョウイン',r:'byouin',m:'hospital (kata.)'},{j:'ビョウキ',r:'byouki',m:'illness (kata.)'},{j:'ビョウドウ',r:'byoudou',m:'equality (kata.)'}]},
+  'pya':{d:"Sounds like 'pya'.",h_ex:[{j:'ろっぴゃく',r:'roppyaku',m:'600'},{j:'はっぴゃく',r:'happyaku',m:'800'},{j:'さんびゃく',r:'sanbyaku',m:'300'}],k_ex:[{j:'ピャー',r:'pyaa',m:'squeal sound'},{j:'ピャッ',r:'pyatsu',m:'quick squeak'},{j:'ヒャク',r:'hyaku',m:'hundred (variant)'}]},
+  'pyu':{d:"Sounds like 'pyu' in 'pew'.",h_ex:[{j:'ぴゅーぴゅー',r:'pyuupyuu',m:'whooshing'},{j:'ぴゅっと',r:'pyutto',m:'squirt/zoom'},{j:'ぴゅん',r:'pyun',m:'whoosh'}],k_ex:[{j:'コンピューター',r:'konpyuutaa',m:'computer'},{j:'ピュア',r:'pyua',m:'pure'},{j:'ピューレ',r:'pyuure',m:'puree'}]},
+  'pyo':{d:"Sounds like 'pyo'.",h_ex:[{j:'はっぴょう',r:'happyou',m:'presentation'},{j:'ぴょんぴょん',r:'pyonpyon',m:'hopping'},{j:'ぴょん',r:'pyon',m:'hop/jump'}],k_ex:[{j:'ピョン',r:'pyon',m:'hop/jump'},{j:'ピョンヤン',r:'pyonyan',m:'Pyongyang'},{j:'ピョンピョン',r:'pyonpyon',m:'hopping'}]},
+  'va':{d:"Sounds like 'va'.",h_ex:[],k_ex:[{j:'ヴァイオリン',r:'vaiorin',m:'violin'},{j:'ヴァンパイア',r:'vanpaia',m:'vampire'},{j:'ヴァレンタイン',r:'varentain',m:'Valentine'}]},
+  'vi':{d:"Sounds like 'vi'.",h_ex:[],k_ex:[{j:'ヴィジョン',r:'vijon',m:'vision'},{j:'ヴィラ',r:'vira',m:'villa'},{j:'ヴィデオ',r:'video',m:'video (archaic)'}]},
+  'vu':{d:"Sounds like 'vu'.",h_ex:[],k_ex:[{j:'デジャヴ',r:'dejavu',m:'déjà vu'},{j:'ヴードゥー',r:'vuuduu',m:'voodoo'},{j:'ヴ（文字）',r:'vu',m:'the letter V'}]},
+  've':{d:"Sounds like 've'.",h_ex:[],k_ex:[{j:'ヴェール',r:'veeru',m:'veil'},{j:'ヴェニス',r:'venisu',m:'Venice'},{j:'ヴェスパ',r:'vesupa',m:'Vespa'}]},
+  'vo':{d:"Sounds like 'vo'.",h_ex:[],k_ex:[{j:'ヴォーカル',r:'vookaru',m:'vocal'},{j:'ヴォリューム',r:'voryuumu',m:'volume'},{j:'ヴォイス',r:'voisu',m:'voice'}]},
+  'fa':{d:"Sounds like 'fa'.",h_ex:[],k_ex:[{j:'ファッション',r:'fasshon',m:'fashion'},{j:'ファイト',r:'faito',m:'fight'},{j:'ファン',r:'fan',m:'fan'}]},
+  'fi':{d:"Sounds like 'fi'.",h_ex:[],k_ex:[{j:'フィルム',r:'firumu',m:'film'},{j:'フィギュア',r:'figyua',m:'figure'},{j:'フィットネス',r:'fittonesu',m:'fitness'}]},
+  'fe':{d:"Sounds like 'fe'.",h_ex:[],k_ex:[{j:'フェンス',r:'fensu',m:'fence'},{j:'フェア',r:'fea',m:'fair'},{j:'フェリー',r:'ferii',m:'ferry'}]},
+  'fo':{d:"Sounds like 'fo'.",h_ex:[],k_ex:[{j:'フォーク',r:'fooku',m:'fork'},{j:'フォーム',r:'foomu',m:'form'},{j:'フォルダ',r:'foruda',m:'folder'}]},
+  'wi':{d:"Sounds like 'wi'.",h_ex:[],k_ex:[{j:'ウィンドウ',r:'windou',m:'window'},{j:'ウィキ',r:'wiki',m:'wiki'},{j:'ウィスキー',r:'uisukii',m:'whisky'}]},
+  'we':{d:"Sounds like 'we'.",h_ex:[],k_ex:[{j:'ウェブ',r:'webu',m:'web'},{j:'ウェット',r:'wetto',m:'wet'},{j:'ウェルカム',r:'werukamu',m:'welcome'}]},
+  'ti':{d:"Sounds like 'ti' (tea).",h_ex:[],k_ex:[{j:'パーティー',r:'paatii',m:'party'},{j:'ティー',r:'tii',m:'tea'},{j:'ティッシュ',r:'tisshu',m:'tissue'}]},
+  'tu':{d:"Sounds like 'tu' (too).",h_ex:[],k_ex:[{j:'タトゥー',r:'tatuu',m:'tattoo'},{j:'トゥルー',r:'turuu',m:'true'},{j:'トゥース',r:'tuusu',m:'tooth'}]},
+  'di':{d:"Sounds like 'di' (dee).",h_ex:[],k_ex:[{j:'ディスプレイ',r:'disupurei',m:'display'},{j:'ディナー',r:'dinaa',m:'dinner'},{j:'ディスク',r:'disuku',m:'disk'}]},
+  'du':{d:"Sounds like 'du' (doo).",h_ex:[],k_ex:[{j:'ヒンドゥー',r:'hinduu',m:'Hindu'},{j:'デュアル',r:'dyuaru',m:'dual'},{j:'ドゥーム',r:'duumu',m:'doom'}]},
+  'she':{d:"Sounds like 'she' in 'shell'.",h_ex:[],k_ex:[{j:'シェフ',r:'shefu',m:'chef'},{j:'シェア',r:'shea',m:'share'},{j:'シェルター',r:'sherutaa',m:'shelter'}]},
+  'che':{d:"Sounds like 'che' in 'check'.",h_ex:[],k_ex:[{j:'チェック',r:'chekku',m:'check'},{j:'チェリー',r:'cherii',m:'cherry'},{j:'チェスト',r:'chesuto',m:'chest'}]},
+  'je':{d:"Sounds like 'je' in 'jet'.",h_ex:[],k_ex:[{j:'ジェット',r:'jetto',m:'jet'},{j:'ジェリー',r:'jerii',m:'jelly'},{j:'ジェスチャー',r:'jesuchaa',m:'gesture'}]},
+  'fyu':{d:"Sounds like 'fyu' in 'few'.",h_ex:[],k_ex:[{j:'フュージョン',r:'fyuujon',m:'fusion'},{j:'フューチャー',r:'fyuuchaa',m:'future'},{j:'フュー',r:'fyuu',m:'phew'}]},
+  'tyu':{d:"Sounds like 'tyu' (rare).",h_ex:[],k_ex:[{j:'テュルク',r:'tyuruku',m:'Turkic'},{j:'テュービンゲン',r:'tyuubingen',m:'Tübingen'},{j:'テュートン',r:'tyuuton',m:'Teuton'}]},
+  'dyu':{d:"Sounds like 'dyu' in 'dew'.",h_ex:[],k_ex:[{j:'デュエット',r:'dyuetto',m:'duet'},{j:'デュアル',r:'dyuaru',m:'dual'},{j:'デュオ',r:'dyuo',m:'duo'}]},
+  'xtsu':{d:"Small tsu (Sokuon). Pauses/doubles the next consonant.",h_ex:[{j:'がっこう',r:'gakkou',m:'school'},{j:'きっぷ',r:'kippu',m:'ticket'},{j:'もっと',r:'motto',m:'more'}],k_ex:[{j:'チケット',r:'chiketto',m:'ticket'},{j:'ペット',r:'petto',m:'pet'},{j:'ベッド',r:'beddo',m:'bed'}]},
+  'long':{d:"Prolonged sound mark. Extends the previous vowel.",h_ex:[{j:'らーめん',r:'raamen',m:'ramen'},{j:'おかあさん',r:'okaasan',m:'mother'},{j:'おとうさん',r:'otousan',m:'father'}],k_ex:[{j:'コーヒー',r:'koohii',m:'coffee'},{j:'スーパー',r:'suupaa',m:'supermarket'},{j:'ケーキ',r:'keeki',m:'cake'}]}
 };
 
 /* ── Reference State ── */
@@ -1280,7 +1326,8 @@ function showPronTip(e,romaji){
   } else {
     let exL=isHiragana?info.h_ex:info.k_ex;
     if(!exL||!exL.length)exL=isHiragana?info.k_ex:info.h_ex;
-    const exHtml=exL&&exL.length?'<div class="tip-examples">'+exL.map(ex=>`<div class="ex-item" tabindex="0" onclick="speak('${ex.j}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();speak('${ex.j}');}"><span class="ex-jp">${ex.j}</span><span class="ex-ro">${ex.r}</span><span class="ex-en">${ex.m}</span></div>`).join('')+'</div>':'';
+    const exSliced=exL&&exL.length?exL.slice(0,3):[];
+    const exHtml=exSliced.length?'<div class="tip-examples">'+exSliced.map(ex=>`<div class="ex-item" tabindex="0" onclick="speak('${ex.j}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();speak('${ex.j}');}"><span class="ex-jp">${ex.j}</span><span class="ex-ro">${ex.r}</span><span class="ex-en">${ex.m}</span></div>`).join('')+'</div>':'';
     pronTip.innerHTML=`<div class="tip-header"><span class="romaji-hl">${romaji}</span></div><div class="tip-desc">${info.d}</div>${exHtml}`;
   }
   pronTip.style.left='-9999px';pronTip.style.top='-9999px';
